@@ -45,7 +45,25 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
     []
   );
 
-  //   const update = useCallback((root, links) => {}, []);
+  const update = useCallback(
+    (
+      root: d3.HierarchyNode<TreeNode>,
+      links: d3.HierarchyLink<TreeNode>[]
+    ) => {},
+    []
+  );
+  const flatten = useCallback((root: TreeNode) => {
+    let nodes: TreeNode[] = [],
+      i = 0;
+
+    const recurse = (node: any) => {
+      if (node.children) node.children.forEach(recurse);
+      if (!node.id) node.id = ++i;
+      nodes.push(node);
+    };
+    recurse(root);
+    return nodes;
+  }, []);
 
   useEffect(() => {
     const root = d3.hierarchy(tree);
@@ -112,7 +130,7 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
         viewBox={`${-dimension.w / 2} ${-dimension.h / 2} ${dimension.w} ${
           dimension.h
         }`}
-        style={{ maxWidth: "100%", height: "100%" }}
+        className={c.svgComponent}
       ></svg>
     </div>
   );

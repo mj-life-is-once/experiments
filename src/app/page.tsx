@@ -4,7 +4,7 @@ import c from "./page.module.css";
 import TreeNav from "@/components/TreeNav";
 import { TreeNode } from "@/type/types";
 
-export const getExperimentsData = async () => {
+const getExperimentsData = async () => {
   // process.cwd() is the current working directory
   const filePath = path.join(process.cwd(), "./src/files/flare-2.json");
   const jsonData = await fsPromises.readFile(filePath, "utf-8");
