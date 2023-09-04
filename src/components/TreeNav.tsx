@@ -10,6 +10,10 @@ import { SimulationLinkDatum } from "d3";
 const width = 1200;
 const height = 600;
 
+const mainDistance = 3.5;
+const subDistance = 3.5;
+const forceStrength = -50;
+
 const TreeNav = ({ data }: { data: TreeNode }) => {
   const [dimension, setDimension] = useState({ w: width, h: height });
   const [root, setRoot] = useState(d3.hierarchy(data));
@@ -49,7 +53,6 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
     (root: d3.HierarchyNode<TreeNode>) => {
       const links = root.links();
       const nodes = root.descendants();
-
       const simulation = d3
         .forceSimulation(nodes as d3.SimulationNodeDatum[])
         .force(
@@ -57,10 +60,10 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
           d3
             .forceLink(links as SimulationLinkDatum<SimulationNodeDatum>[])
             .id((d: any) => d.id)
-            .distance(0)
-            .strength(1)
+            .distance(mainDistance * 1.05)
+            .strength(2)
         )
-        .force("charge", d3.forceManyBody().strength(-50))
+        .force("charge", d3.forceManyBody().strength(forceStrength))
         .force("x", d3.forceX())
         .force("y", d3.forceY());
 
@@ -83,7 +86,7 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
         .join("circle")
         .attr("fill", (d: any) => (d.children ? null : "#000"))
         .attr("stroke", (d: any) => (d.children ? null : "#fff"))
-        .attr("r", 3.5)
+        .attr("r", (d: any) => (d.children ? mainDistance : subDistance))
         .on("click", (event: any, d: any) => {
           if (!event.defaultPrevented) {
             //console.log(d.children);
