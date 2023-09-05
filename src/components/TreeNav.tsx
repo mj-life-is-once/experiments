@@ -153,6 +153,8 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
                 x={(node as any).x}
                 y={(node as any).y}
                 style={{ pointerEvents: "none" }}
+                fill="#fff"
+                stroke="none"
               >
                 {node.data.name}
               </text>
