@@ -1,0 +1,47 @@
+{
+  "name": "Explorations",
+  "path": "/",
+  "children": [
+    {
+      "name": "Data Visualisation",
+      "path": "/dataviz",
+      "children": [
+        {
+          "name": "d3JS",
+          "children": [
+            { "name": "Scattered Charts", "path": "/scattered" },
+            { "name": "Force Simulation", "path": "/force" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Machine Learning",
+      "path": "/ml",
+      "children": [
+        { "name": "Polyphonic RNN", "path": "/sequence" },
+        { "name": "LLM", "path": "/llm" }
+      ]
+    },
+    {
+      "name": "AR / VR / MR",
+      "path": "/virtual",
+      "children": [{ "name": "Playcanvas", "path": "/playcanvas" }]
+    },
+    {
+      "name": "Platform Engineering",
+      "path": "/platform",
+      "children": [
+        {
+          "name": "converters",
+          "children": [{ "name": "infrastructure", "path": "/infrastructure" }]
+        }
+      ]
+    },
+    {
+      "name": "IoT",
+      "path": "/IoT",
+      "children": [{ "name": "IoT Infrastructure", "path": "/architecture" }]
+    }
+  ]
+}

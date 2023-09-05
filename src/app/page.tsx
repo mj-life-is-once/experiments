@@ -6,7 +6,7 @@ import { TreeNode } from "@/type/types";
 
 const getExperimentsData = async () => {
   // process.cwd() is the current working directory
-  const filePath = path.join(process.cwd(), "./src/files/flare-2.json");
+  const filePath = path.join(process.cwd(), "./src/files/menus.json");
   const jsonData = await fsPromises.readFile(filePath, "utf-8");
   const experimentsData = JSON.parse(jsonData);
 
