@@ -69,18 +69,8 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
       .force("x", d3.forceX())
       .force("y", d3.forceY());
 
-    // remove old links
-    d3.select(nodesRef.current!).selectAll("line").remove();
-
     //console.log(link);
-    const link = d3
-      .select(linesRef.current!)
-      .selectAll("line")
-      .data(links)
-      .join("line");
-
-    // remove old nodes
-    d3.select(nodesRef.current!).selectAll("circle").remove();
+    const link = d3.select(linesRef.current!).selectAll("line").data(links);
 
     const node = d3
       .select(nodesRef.current!)
@@ -150,7 +140,7 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
         className={c.svgComponent}
       >
         <g ref={linesRef} style={{ stroke: "#999", strokeOpacity: 0.6 }}>
-          {/* {links.map((link, index) => (
+          {links.map((link, index) => (
             <line
               key={index}
               x1={(link.source as any).x}
@@ -158,9 +148,18 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
               x2={(link.target as any).x}
               y2={(link.target as any).y}
             />
+          ))}
+        </g>
+        <g ref={nodesRef} style={{ fill: "#797979", stroke: "#fff" }}>
+          {/* {nodes.map((node, index) => (
+            <circle
+              key={index}
+              fill={node.children ? "#2f9e9c" : "none"}
+              stroke={node.children ? "#ffffff" : "none"}
+              r={node.children ? mainDistance : subDistance}
+            ></circle>
           ))} */}
         </g>
-        <g ref={nodesRef} style={{ fill: "#797979", stroke: "#fff" }}></g>
       </svg>
     </div>
   );
