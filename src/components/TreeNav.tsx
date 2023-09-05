@@ -165,10 +165,10 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
                   r={radius(node)}
                   cx={(node as any).x}
                   cy={(node as any).y}
-                  onMouseEnter={(event: any) => {
-                    console.log(event.target);
-                    console.log("mouse hover");
-                  }}
+                  //   onMouseEnter={(event: any) => {
+                  //     console.log(event.target);
+                  //     console.log("mouse hover");
+                  //   }}
                 >
                   <title>{node.data.name}</title>
                 </circle>
