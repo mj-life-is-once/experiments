@@ -69,6 +69,9 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
       .force("x", d3.forceX())
       .force("y", d3.forceY());
 
+    // remove old links
+    d3.select(nodesRef.current!).selectAll("line").remove();
+
     //console.log(link);
     const link = d3
       .select(linesRef.current!)
