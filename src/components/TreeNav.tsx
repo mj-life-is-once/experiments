@@ -72,20 +72,10 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
     //console.log(link);
     const link = d3.select(linesRef.current!).selectAll("line").data(links);
 
-    const node = d3
-      .select(nodesRef.current!)
-      .selectAll("circle")
-      .data(nodes)
-      .join("circle")
-      .attr("fill", (d: d3.HierarchyNode<TreeNode>) =>
-        d.children ? null : "#2f9e9c"
-      )
-      .attr("stroke", (d: d3.HierarchyNode<TreeNode>) =>
-        d.children ? null : "#ffffff"
-      )
-      .attr("r", (d: d3.HierarchyNode<TreeNode>) =>
-        d.children ? mainDistance : subDistance
-      )
+    const node = d3.select(nodesRef.current!).selectAll("circle").data(nodes);
+    const text = d3.select(nodesRef.current!).selectAll("text").data(nodes);
+
+    node
       .on("click", (event: any, d: any) => {
         if (!event.defaultPrevented) {
           //console.log(d.children);
@@ -104,12 +94,6 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
 
       .call(drag(simulation) as any);
 
-    node.append("title").text((d: any) => d.data.name);
-    node.append("text").text((d: any) => d.data.name);
-
-    // Exit any old nodes.
-    node.exit().remove();
-
     simulation.on("tick", () => {
       link
         .attr("x1", (d: any) => d.source.x)
@@ -118,11 +102,12 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
         .attr("y2", (d: any) => d.target.y);
 
       node.attr("cx", (d: any) => d.x).attr("cy", (d: any) => d.y);
+      text.attr("x", (d: any) => d.x).attr("y", (d: any) => d.y);
     });
   }, [drag, links, nodes, root]);
 
   useEffect(() => {
-    // console.log(links);
+    console.log(nodes);
   }, [links, nodes]);
 
   useEffect(() => {
@@ -151,14 +136,23 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
           ))}
         </g>
         <g ref={nodesRef} style={{ fill: "#797979", stroke: "#fff" }}>
-          {/* {nodes.map((node, index) => (
-            <circle
-              key={index}
-              fill={node.children ? "#2f9e9c" : "none"}
-              stroke={node.children ? "#ffffff" : "none"}
-              r={node.children ? mainDistance : subDistance}
-            ></circle>
-          ))} */}
+          {nodes.map((node, index) => (
+            <>
+              <circle
+                key={index}
+                fill={node.children && "#2f9e9c"}
+                stroke={node.children && "#ffffff"}
+                r={node.children ? mainDistance : subDistance}
+                cx={(node as any).x}
+                cy={(node as any).y}
+              >
+                <title>{node.data.name}</title>
+              </circle>
+              <text ext-anchor="middle" x={(node as any).x} y={(node as any).y}>
+                {node.data.name}
+              </text>
+            </>
+          ))}
         </g>
       </svg>
     </div>
