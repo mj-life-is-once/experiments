@@ -2,6 +2,7 @@ import fsPromises from "fs/promises";
 import path from "path";
 import c from "./page.module.css";
 import TreeNav from "@/components/TreeNav";
+import MainNav from "@/components/MainNav";
 import { TreeNode } from "@/type/types";
 
 const getExperimentsData = async () => {
@@ -19,6 +20,7 @@ const Home = async () => {
 
   return (
     <main className={c.main}>
+      <MainNav />
       <TreeNav data={promiseData}></TreeNav>
     </main>
   );

@@ -1,0 +1,25 @@
+.nav {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  pointer-events: none;
+}
+
+.title {
+  font-size: 4em;
+  line-height: 1.2;
+  max-width: 5rem;
+
+  span {
+    color: var(--highlight_color_2);
+  }
+}
+
+.description {
+  margin-top: 1rem;
+  font-size: 1em;
+}
+
+.button {
+  pointer-events: all;
+}

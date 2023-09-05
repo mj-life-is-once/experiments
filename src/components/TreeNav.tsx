@@ -84,7 +84,13 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
             d._children = d.children;
             d.children = null;
           } else {
-            d.children = d._children;
+            if (d._children) {
+              d.children = d._children;
+            } else {
+              console.log("leaf node: ", d.data.path);
+              //navigate
+            }
+
             d._children = null;
           }
 
@@ -92,7 +98,6 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
           setNodes(root.descendants());
         }
       })
-
       .call(drag(simulation) as any);
 
     simulation.on("tick", () => {
@@ -108,7 +113,7 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
   }, [drag, links, nodes, root]);
 
   useEffect(() => {
-    console.log(nodes);
+    //console.log(nodes);
   }, [links, nodes]);
 
   useEffect(() => {
@@ -165,10 +170,6 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
                   r={radius(node)}
                   cx={(node as any).x}
                   cy={(node as any).y}
-                  //   onMouseEnter={(event: any) => {
-                  //     console.log(event.target);
-                  //     console.log("mouse hover");
-                  //   }}
                 >
                   <title>{node.data.name}</title>
                 </circle>
