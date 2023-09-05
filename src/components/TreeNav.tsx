@@ -148,7 +148,12 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
               >
                 <title>{node.data.name}</title>
               </circle>
-              <text ext-anchor="middle" x={(node as any).x} y={(node as any).y}>
+              <text
+                ext-anchor="middle"
+                x={(node as any).x}
+                y={(node as any).y}
+                style={{ pointerEvents: "none" }}
+              >
                 {node.data.name}
               </text>
             </>
