@@ -9,9 +9,9 @@
   margin: 1rem 0;
   font-size: 4em;
   line-height: 1.2;
-  max-width: 4rem;
+  max-width: 15rem;
 
-  span {
+  .wip {
     color: var(--highlight_color_2);
   }
 }
@@ -23,12 +23,13 @@
 
 .button {
   pointer-events: all;
+  color: var(--text_color);
 }
 
 @media screen and (max-width: 540px) {
   .title {
     font-size: 3em;
-    max-width: 4rem;
+    max-width: 10rem;
   }
 
   .description {
