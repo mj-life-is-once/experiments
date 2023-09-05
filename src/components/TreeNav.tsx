@@ -10,6 +10,7 @@ import { SimulationLinkDatum } from "d3";
 const width = 1200;
 const height = 600;
 
+const rootDistance = 100;
 const mainDistance = 80;
 const subDistance = 50;
 const chargeStrength = -1900;
@@ -124,7 +125,10 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
         }`}
         className={c.svgComponent}
       >
-        <g ref={linesRef} style={{ stroke: "#999", strokeOpacity: 0.6 }}>
+        <g
+          ref={linesRef}
+          style={{ stroke: "#1a1a1a", strokeOpacity: 0.8, strokeWidth: "1px" }}
+        >
           {links.map((link, index) => (
             <line
               key={index}
@@ -135,32 +139,53 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
             />
           ))}
         </g>
-        <g ref={nodesRef} style={{ fill: "#797979", stroke: "#fff" }}>
-          {nodes.map((node, index) => (
-            <>
-              <circle
-                key={index}
-                fill={node.children && "#2f9e9c"}
-                stroke={node.children && "#ffffff"}
-                r={node.children ? mainDistance : subDistance}
-                cx={(node as any).x}
-                cy={(node as any).y}
-              >
-                <title>{node.data.name}</title>
-              </circle>
-              <text
-                text-anchor="middle"
-                alignment-baseline="middle"
-                x={(node as any).x}
-                y={(node as any).y}
-                style={{ pointerEvents: "none" }}
-                fill="#fff"
-                stroke="none"
-              >
-                {node.data.name}
-              </text>
-            </>
-          ))}
+        <g ref={nodesRef} style={{ fill: "#283230", stroke: "#fff" }}>
+          {nodes.map((node, index) => {
+            const fillCircleColor = (node: any) => {
+              if (node.parent === null) return "#ffffff";
+              if (node.children) return "#008cff";
+            };
+
+            const radius = (node: any) => {
+              if (node.parent === null) return rootDistance;
+              if (node.children) return mainDistance;
+              else return subDistance;
+            };
+
+            const strokeCircleColor = (node: any) => {
+              if (node.parent === null) return "#000";
+              if (node.children) return "#ffffff";
+            };
+
+            return (
+              <g key={`${node.data.name}_${index}`}>
+                <circle
+                  fill={fillCircleColor(node)}
+                  stroke={strokeCircleColor(node)}
+                  r={radius(node)}
+                  cx={(node as any).x}
+                  cy={(node as any).y}
+                  onMouseEnter={(event: any) => {
+                    console.log(event.target);
+                    console.log("mouse hover");
+                  }}
+                >
+                  <title>{node.data.name}</title>
+                </circle>
+                <text
+                  textAnchor="middle"
+                  alignmentBaseline="middle"
+                  x={(node as any).x}
+                  y={(node as any).y}
+                  style={{ pointerEvents: "none" }}
+                  fill={node.parent === null ? "#000" : "#ffffff"}
+                  stroke="none"
+                >
+                  {node.data.name}
+                </text>
+              </g>
+            );
+          })}
         </g>
       </svg>
     </div>

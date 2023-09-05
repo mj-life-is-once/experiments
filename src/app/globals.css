@@ -4,6 +4,32 @@
   --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+
+  /* Gotham fonts */
+  font-family: "Gotham", sans-serif;
+  font-family: "Gotham Black", sans-serif;
+  font-family: "Gotham Light", sans-serif;
+  font-family: "Gotham Thin", sans-serif;
+  font-family: "Gotham Book", sans-serif;
+
+  font-family: "Chaparral Pro", sans-serif;
+  font-family: "Playfair Display", serif;
+
+  /* Orator fonts */
+  font-family: "Orator Std", sans-serif;
+
+  line-height: 1.5;
+  font-weight: 400;
+
+  --highlight_color_1: #02a57c;
+  --highlight_color_2: #7ba7fd;
+  --highlight_color_3: #fa6b9b;
+  --highlight_color_4: #293e3f;
+  --background_color: #e9e8dfde;
+  --grid_color: rgba(186, 186, 186, 0.5);
+  --text_color: rgba(0, 0, 0, 0.87);
+  --text_highlight_color: #1affc7; /*#00d4a0*/
+  --card_color: #e9e8dfde;
 }
 
 * {
@@ -20,12 +46,11 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: var(--background_color);
+  background-image: linear-gradient(var(--grid_color) 0.1em, transparent 0.1em),
+    linear-gradient(90deg, var(--grid_color) 0.1em, transparent 0.1em);
+  background-size: 5em 5em;
+  color: var(--text_color);
 }
 
 a {
@@ -35,10 +60,4 @@ a {
 
 circle:hover {
   fill: rgba(150, 190, 37, 1);
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
 }
