@@ -10,10 +10,10 @@ import { SimulationLinkDatum } from "d3";
 const width = 1200;
 const height = 600;
 
-const mainDistance = 60;
-const subDistance = 40;
-const chargeStrength = -1000;
-const linkStrength = 0.2;
+const mainDistance = 80;
+const subDistance = 50;
+const chargeStrength = -1900;
+const linkStrength = 0.1;
 
 // source : https://observablehq.com/@d3/force-directed-tree?intent=fork
 
@@ -149,7 +149,8 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
                 <title>{node.data.name}</title>
               </circle>
               <text
-                ext-anchor="middle"
+                text-anchor="middle"
+                alignment-baseline="middle"
                 x={(node as any).x}
                 y={(node as any).y}
                 style={{ pointerEvents: "none" }}
