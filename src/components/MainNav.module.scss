@@ -6,6 +6,7 @@
 }
 
 .title {
+  margin: 1rem 0;
   font-size: 4em;
   line-height: 1.2;
   max-width: 4rem;
@@ -16,11 +17,23 @@
 }
 
 .description {
-  margin-top: 1rem;
   font-size: 1.2rem;
   max-width: 25rem;
 }
 
 .button {
   pointer-events: all;
+}
+
+@media screen and (max-width: 540px) {
+  .title {
+    font-size: 3em;
+    max-width: 4rem;
+  }
+
+  .description {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    max-width: 20rem;
+  }
 }
