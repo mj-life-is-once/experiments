@@ -8,10 +8,11 @@ interface IntroProps {
   description: string;
   backLink: { href: string; title: string };
   tags?: string[];
+  className?: string;
 }
 const Intro = (props: IntroProps) => {
   return (
-    <div className={c.nav}>
+    <section className={`${props.className} ${c.intro} `}>
       <button className={`${c.button} ${orator.className}`}>
         <a href={props.backLink.href}>{props.backLink.title}</a>
       </button>
@@ -22,7 +23,7 @@ const Intro = (props: IntroProps) => {
           {tag}
         </button>
       ))}
-    </div>
+    </section>
   );
 };
 

@@ -1,6 +1,6 @@
 import fsPromises from "fs/promises";
 import path from "path";
-import c from "./page.module.css";
+import c from "./page.module.scss";
 import TreeNav from "@/components/_ui/TreeNav";
 import Intro from "@/components/_ui/Intro";
 import { TreeNode } from "@/type/types";
@@ -30,7 +30,6 @@ const Home = async () => {
         description=" This is (going to be) showcasing Minjoo&#x27;s various technical
         experiments."
         backLink={{ title: "Back to Home", href: "http://minjoocho.com" }}
-        // tags={["a", "b"]}
       />
       <TreeNav data={promiseData}></TreeNav>
     </main>
