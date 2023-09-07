@@ -1,8 +1,8 @@
 import fsPromises from "fs/promises";
 import path from "path";
 import c from "./page.module.css";
-import TreeNav from "@/components/TreeNav";
-import MainNav from "@/components/MainNav";
+import TreeNav from "@/components/UI/TreeNav";
+import Intro from "@/components/UI/Intro";
 import { TreeNode } from "@/type/types";
 
 const getExperimentsData = async () => {
@@ -20,7 +20,17 @@ const Home = async () => {
 
   return (
     <main className={c.main}>
-      <MainNav />
+      <Intro
+        title={
+          <h1>
+            Minjoo&#x27;s Experiment
+            <div style={{ color: "#ffbf00" }}>(WIP)</div>
+          </h1>
+        }
+        description=" This is (going to be) showcasing Minjoo&#x27;s various technical
+        experiments."
+        backLink={{ title: "Back to Home", href: "http://minjoocho.com" }}
+      />
       <TreeNav data={promiseData}></TreeNav>
     </main>
   );

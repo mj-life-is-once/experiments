@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState, useRef, useCallback } from "react";
 import { TreeNode } from "@/type/types";
 import { SimulationNodeDatum } from "d3";
 import { SimulationLinkDatum } from "d3";
-
+import { useRouter } from "next/navigation";
 const width = 1200;
 const height = 600;
 
@@ -19,6 +19,7 @@ const linkStrength = 0.1;
 // source : https://observablehq.com/@d3/force-directed-tree?intent=fork
 
 const TreeNav = ({ data }: { data: TreeNode }) => {
+  const router = useRouter();
   const [dimension, setDimension] = useState({ w: width, h: height });
   const [root, setRoot] = useState(d3.hierarchy(data));
   const [links, setLinks] = useState(root.links());
@@ -89,6 +90,7 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
             } else {
               console.log("leaf node: ", d.data.path);
               //navigate
+              router.push(`/blog${d.data.path}`);
             }
 
             d._children = null;
@@ -158,7 +160,7 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
             };
 
             const strokeCircleColor = (node: any) => {
-              if (node.parent === null) return "#000";
+              if (node.parent === null) return "#737373";
               if (node.children) return "#ffffff";
             };
 
