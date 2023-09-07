@@ -42,7 +42,7 @@ a {
 }
 
 circle:hover {
-  fill: #ffbf00;
+  fill: var(--highlight_color_1);
 }
 
 button {

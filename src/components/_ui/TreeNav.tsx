@@ -90,7 +90,7 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
             } else {
               console.log("leaf node: ", d.data.path);
               //navigate
-              router.push(`/blog${d.data.path}`);
+              //router.push(`/blog${d.data.path}`);
             }
 
             d._children = null;
@@ -132,6 +132,10 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
         }`}
         className={c.svgComponent}
       >
+        <linearGradient id="highlight-gradient" x2="1" y2="1">
+          <stop offset="0%" stop-color="#0401b0" />
+          <stop offset="100%" stop-color="#5a0096" />
+        </linearGradient>
         <g
           ref={linesRef}
           style={{ stroke: "#1a1a1a", strokeOpacity: 0.8, strokeWidth: "1px" }}
@@ -146,11 +150,12 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
             />
           ))}
         </g>
+
         <g ref={nodesRef} style={{ fill: "#283230", stroke: "#fff" }}>
           {nodes.map((node, index) => {
             const fillCircleColor = (node: any) => {
               if (node.parent === null) return "#ffffff";
-              if (node.children) return "#008cff";
+              if (node.children) return "url(#highlight-gradient)";
             };
 
             const radius = (node: any) => {
