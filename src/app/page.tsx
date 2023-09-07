@@ -1,13 +1,13 @@
 import fsPromises from "fs/promises";
 import path from "path";
 import c from "./page.module.css";
-import TreeNav from "@/components/UI/TreeNav";
-import Intro from "@/components/UI/Intro";
+import TreeNav from "@/components/_ui/TreeNav";
+import Intro from "@/components/_ui/Intro";
 import { TreeNode } from "@/type/types";
 
 const getExperimentsData = async () => {
   // process.cwd() is the current working directory
-  const filePath = path.join(process.cwd(), "./src/files/menus.json");
+  const filePath = path.join(process.cwd(), "./src/store/menus.json");
   const jsonData = await fsPromises.readFile(filePath, "utf-8");
   const experimentsData = JSON.parse(jsonData);
 
@@ -30,6 +30,7 @@ const Home = async () => {
         description=" This is (going to be) showcasing Minjoo&#x27;s various technical
         experiments."
         backLink={{ title: "Back to Home", href: "http://minjoocho.com" }}
+        // tags={["a", "b"]}
       />
       <TreeNav data={promiseData}></TreeNav>
     </main>

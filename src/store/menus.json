@@ -19,8 +19,11 @@
       "name": "Machine Learning",
       "path": "/ml",
       "children": [
-        { "name": "Polyphonic RNN", "path": "/sequence" },
-        { "name": "LLM", "path": "/llm" }
+        {
+          "name": "huggingface Ecosystem",
+          "path": "/huggingface"
+        },
+        { "name": "musicGeneration", "path": "/musicGeneration" }
       ]
     },
     {
