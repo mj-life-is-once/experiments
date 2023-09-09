@@ -91,7 +91,7 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
               console.log("leaf node: ", d.data.path);
               //navigate
               if (
-                d.data.path === "/huggingface" ||
+                // d.data.path === "/huggingface" ||
                 d.data.path === "/musicGeneration"
               ) {
                 router.push(`/blog${d.data.path}`);

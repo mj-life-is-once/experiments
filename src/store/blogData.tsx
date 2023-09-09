@@ -3,42 +3,44 @@ import CodeBlock from "@/components/_ui/CodeBlock";
 import TextBlock from "@/components/_ui/TextBlock";
 import ImageBlock from "@/components/_ui/ImageBlock";
 import Quote from "@/components/_ui/Quote";
-import MagentaSystem from "@/svg/brain_system.svg";
+import MagentaSystem from "@/svg/ml/brain_system.svg";
+import VMSystem from "@/svg/ml/vm_system.svg";
+import Image from "next/image";
 
 interface BlogData {
   [key: string]: any; // type for unknown keys.
 }
 
 export const BLOGS: BlogData = {
-  huggingface: {
-    intro: {
-      category: "Machine Learning",
-      title: <h1>Develop ML Webapp with Huggingface APIS</h1>,
-      description: (
-        <p>
-          Through this experience, I explored the possibility of huggingface as
-          a backend for hosting ML engines to create
-        </p>
-      ),
+  // huggingface: {
+  //   intro: {
+  //     category: "Machine Learning",
+  //     title: <h1>Develop ML Webapp with Huggingface APIS</h1>,
+  //     description: (
+  //       <p>
+  //         Through this experience, I explored the possibility of huggingface as
+  //         a backend for hosting ML engines to create
+  //       </p>
+  //     ),
 
-      backLink: { title: "Back to Experiments", href: "/" },
-      tags: ["huggingface", "python", "react"],
-    },
-  },
+  //     backLink: { title: "Back to Experiments", href: "/" },
+  //     tags: ["huggingface", "python", "react"],
+  //   },
+  // },
   musicGeneration: {
     intro: {
       category: "Machine Learning",
       title: <h1>Deploy Magenta ML model in Google Cloud Platform</h1>,
       description: (
         <p>
-          I would like to introduce my exploration journey to redesign old
+          I would like to introduce my exploration journey to improve my old
           project{" "}
           <span>
             <a href="https://www.minjoocho.com/projects/a1?category=artistic">
               Brain Piano
             </a>
           </span>{" "}
-          in a modern architecture stack utilising{" "}
+          in a modern architecture stack utilizing{" "}
           <span className="highlight">Google Cloud Platform</span>.
         </p>
       ),
@@ -47,7 +49,6 @@ export const BLOGS: BlogData = {
     },
     contents: [
       {
-        type: "text",
         content: (
           <>
             <TextBlock>
@@ -65,8 +66,20 @@ export const BLOGS: BlogData = {
                 javascript code - with the limited knowledge in the ML
                 deployment.
               </p>
+              <ul>
+                Here are criteria of the new service
+                <li>
+                  The server needs to be{" "}
+                  <span className="highlight">remotely hosted</span>
+                </li>
+                <li>
+                  The server need to be{" "}
+                  <span className="highlight">publicly accessible</span>
+                </li>
+              </ul>
             </TextBlock>
             <ImageBlock
+              type="svg"
               caption={
                 <p>
                   Fig 1. Brain Piano backend hosted pre-trained ML model
@@ -80,7 +93,6 @@ export const BLOGS: BlogData = {
         ),
       },
       {
-        type: "text",
         content: (
           <>
             <TextBlock>
@@ -96,31 +108,184 @@ export const BLOGS: BlogData = {
                 suggest testing the model with Colab environment due to the
                 specific software(OS, python environment) dependencies.
               </p>
-            </TextBlock>
-
-            <Quote>
-              <h4>What is Magenta?</h4>
-              <p style={{ margin: "0" }}>
-                Magenta is an open source research project exploring the role of
-                machine learning as a tool in the creative process.
+              <Quote>
+                <h4>What is Magenta?</h4>
+                <p>
+                  Magenta is an open source research project introduced by
+                  Google Brain team in 2017,exploring the role of machine
+                  learning as a tool in the creative process.
+                </p>
+              </Quote>
+              <p>
+                However, Colab excutes codes in runtime environment and it is
+                not suitable for my usecase. Moreover, I found docker
+                environment, that used to be introduced as an alternative
+                installation method, is moved from their official documentation.
               </p>
-            </Quote>
+            </TextBlock>
           </>
         ),
       },
-      { type: "image", content: <></> },
       {
-        type: "code",
         content: (
-          <CodeBlock
-            language="python"
-            code={`
-import os, sys
+          <>
+            <TextBlock>
+              <h1>3. Dockerization of Magenta</h1>
+              <p>
+                Thankfully, I came across{" "}
+                <span>
+                  <a href="https://github.com/xychelsea/magenta-docker">
+                    this amazing repo
+                  </a>
+                </span>{" "}
+                by xychelsea who recreated Magenta docker-environment. This is
+                my version of{" "}
+                <span className="highlight">docker-compose.yml</span> file to
+                get it work with MacOS(Ventura 13.5.1, M1).
+              </p>
+              <CodeBlock
+                language="yaml"
+                code={`
+# docker-compose.yml file
+version: "3.7"
 
-def foo():
-return True
+networks:
+  default:
+    driver: bridge
+
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    ports:
+      - "9000:9000"
+    restart: always
+    volumes:
+      - portainer-data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+  magenta:
+    platform: linux/amd64
+    image: xychelsea/magenta:latest-jupyter
+    container_name: magenta
+    restart: always
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./volume/magenta:/usr/local/magenta/workspace
+volumes:
+  portainer-data:
 `}
-          />
+              />
+              <Quote>
+                <h4>Portainer</h4>
+                <p>
+                  <span>
+                    <a href="https://www.portainer.io/">Portainer</a>
+                  </span>{" "}
+                  is a GUI for docker management, and it is a dockerized webapp
+                  itself.
+                </p>
+              </Quote>
+              <Quote>
+                <h4>Platform tag</h4>
+                <p>
+                  I added the platform flag that allows for specific platform
+                  <span style={{ fontWeight: "bold" }}>(linux/amd62)</span>{" "}
+                </p>
+              </Quote>
+            </TextBlock>
+          </>
+        ),
+      },
+      {
+        content: (
+          <>
+            <TextBlock>
+              <h1>4. Deploy Code in GCP</h1>
+              <p>
+                I decided to deploy the code to the GCP free instance(e2-micro)
+                to create publicly accessible server.
+              </p>
+              <p>
+                To receive the command from the front-end and deliver the
+                message to the dockerized magenta code, I created a simple{" "}
+                <span className="highlight">FlaskAPI server.</span>
+              </p>
+              <p>
+                Generated midi file from the magenta is then uploaded to the{" "}
+                <span className="highlight">Google Drive</span> to share
+                input/output files with the frontend. The diagram below
+                summarizes what is happening inside the GCP instance.
+              </p>
+              <ImageBlock
+                type="svg"
+                caption="Fig2. System Diagram inside the GCP instance"
+              >
+                <VMSystem />
+              </ImageBlock>
+              <Quote>
+                <h4>e2-micro Specs</h4>
+                <p>
+                  <span>
+                    <a href="https://www.portainer.io/">Portainer</a>
+                  </span>{" "}
+                  is a GUI for docker management, and it is a dockerized webapp
+                  itself.
+                </p>
+              </Quote>
+              <Quote>
+                <h4>Platform tag</h4>
+                <p>
+                  I added the platform flag that allows for specific platform
+                  <span style={{ fontWeight: "bold" }}>(linux/amd62)</span>{" "}
+                </p>
+              </Quote>
+              <p>
+                I will not cover the specific steps to deploy docker container
+                to GCP instance this time. Instead I recommend read{" "}
+                <span>
+                  <a href="https://towardsdatascience.com/how-to-deploy-docker-containers-to-the-cloud-b4d89b2c6c31">
+                    this article to follow through the details.
+                  </a>
+                </span>{" "}
+              </p>
+            </TextBlock>
+          </>
+        ),
+      },
+      {
+        content: (
+          <>
+            <TextBlock>
+              <h1>5. Result</h1>
+              <p>
+                The picture below shows the public webpage deployed to GCP
+                instance. This swaggerUI webpage shows the HTTP endpoints of
+                Flask API.
+              </p>
+              <ImageBlock type="img" style={{ backgroundColor: "transparent" }}>
+                <Image
+                  src="/img/ml/generation/backend.jpg"
+                  fill
+                  style={{
+                    objectFit: "contain",
+                    display: "block",
+                  }}
+                  alt="result"
+                />
+              </ImageBlock>
+              <Quote>
+                <h4>Source Code</h4>
+                <p>
+                  Detailed instruction and source code can be found from
+                  <span>
+                    <a href="https://github.com/mj-life-is-once/magenta-docker">
+                      my github repo.
+                    </a>
+                  </span>
+                </p>
+              </Quote>
+            </TextBlock>
+          </>
         ),
       },
     ],
