@@ -9,13 +9,17 @@ interface ContentProps {
 const ContentBlock = (props: ContentProps) => {
   return (
     <div className={`${props.className ?? ""} ${c.block}`}>
-      {props.contents?.map((content: Content) => {
+      {props.contents?.map((content: Content, index: number) => {
         console.log(content);
         switch (content.type) {
           case "text":
-            return <div className={c.text}>{content.content}</div>;
+            return (
+              <div key={index} className={c.text}>
+                {content.content}
+              </div>
+            );
           default:
-            return content.content;
+            return <div key={index}>{content.content}</div>;
         }
       })}
     </div>

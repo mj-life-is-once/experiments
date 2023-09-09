@@ -12,7 +12,7 @@ interface IntroProps {
 }
 const Intro = (props: IntroProps) => {
   return (
-    <section className={`${props.className} ${c.intro} `}>
+    <section className={`${props.className ?? ""} ${c.intro} `}>
       <button className={`${c.button} ${orator.className}`}>
         <a href={props.backLink.href}>{props.backLink.title}</a>
       </button>

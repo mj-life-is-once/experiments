@@ -26,6 +26,7 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@types/d3": "^7.4.0"
   }
 }
