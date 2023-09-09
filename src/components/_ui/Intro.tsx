@@ -5,7 +5,7 @@ import { orator } from "@/styles/fonts";
 
 interface IntroProps {
   title: ReactNode;
-  description: string;
+  description: ReactNode;
   backLink: { href: string; title: string };
   tags?: string[];
   className?: string;

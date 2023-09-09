@@ -90,7 +90,12 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
             } else {
               console.log("leaf node: ", d.data.path);
               //navigate
-              //router.push(`/blog${d.data.path}`);
+              if (
+                d.data.path === "/huggingface" ||
+                d.data.path === "/musicGeneration"
+              ) {
+                router.push(`/blog${d.data.path}`);
+              }
             }
 
             d._children = null;

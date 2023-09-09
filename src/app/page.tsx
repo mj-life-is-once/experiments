@@ -27,8 +27,12 @@ const Home = async () => {
             <div style={{ color: "#ffbf00" }}>(WIP)</div>
           </h1>
         }
-        description=" This is (going to be) showcasing Minjoo&#x27;s various technical
-        experiments."
+        description={
+          <p>
+            This is (going to be) showcasing Minjoo&#x27;s various technical
+            experiments. Click on the nodes to read the post.
+          </p>
+        }
         backLink={{ title: "Back to Home", href: "http://minjoocho.com" }}
       />
       <TreeNav data={promiseData}></TreeNav>
