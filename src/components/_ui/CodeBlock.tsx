@@ -9,7 +9,7 @@ interface CodeProps {
 }
 const CodeBlock = (props: CodeProps) => {
   return (
-    <div className={`${props.className}`}>
+    <div className={`${props.className ?? ""} ${c.code}`}>
       <SyntaxHighlighter
         language={props.language}
         style={gradientDark}

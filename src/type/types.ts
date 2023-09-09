@@ -18,3 +18,5 @@ export type Graph = {
   nodes: d3Node[];
   links: d3Link[];
 };
+
+export type Content = { type: string; [key: string]: any };

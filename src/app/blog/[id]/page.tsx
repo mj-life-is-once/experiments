@@ -3,7 +3,8 @@ import { Helmet } from "react-helmet";
 import Intro from "@/components/_ui/Intro";
 import { BLOGS } from "@/store/blogData";
 import c from "./page.module.scss";
-import CodeBlock from "@/components/_ui/CodeBlock";
+import ContentBlock from "@/components/_ui/Content";
+import { Content } from "@/type/types";
 
 const Blogs = ({ params }: { params: { id: string } }) => {
   return (
@@ -22,15 +23,9 @@ const Blogs = ({ params }: { params: { id: string } }) => {
             backLink={BLOGS[params.id].intro.backLink}
             tags={BLOGS[params.id].intro.tags}
           />
-          <CodeBlock
-            language="python"
-            code={`
-import os, sys
-
-def foo():
-  return True
-`}
-          />
+          <div className={c.body}>
+            <ContentBlock contents={BLOGS[params.id].contents} />
+          </div>
         </>
       )}
       {!BLOGS.hasOwnProperty(params.id) && (
