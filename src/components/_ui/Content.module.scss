@@ -1,5 +1,5 @@
 .block {
-  padding: 2rem;
+  padding: 5rem;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: var(--border-radius);
   background-color: rgb(243, 245, 239);
@@ -7,7 +7,6 @@
   .text {
     h1 {
       margin: 1rem 2rem 0 0;
-      max-width: 80%;
       font-weight: bold;
       /* background-color: red; */
     }

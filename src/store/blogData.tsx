@@ -1,5 +1,6 @@
 import { orator } from "@/styles/fonts";
 import CodeBlock from "@/components/_ui/CodeBlock";
+import Quote from "@/components/_ui/Quote";
 
 interface BlogData {
   [key: string]: any; // type for unknown keys.
@@ -46,7 +47,7 @@ export const BLOGS: BlogData = {
         type: "text",
         content: (
           <>
-            <h1>1. Give new architecture to the old ML project</h1>
+            <h1>1. Brain Piano backends in Modern Architecture</h1>
             <p>
               After gaining more knowledge on the cloud infrastructure based
               micro-services architecture, I wanted to regain life to the{" "}
@@ -55,8 +56,42 @@ export const BLOGS: BlogData = {
                   Brain Piano Project
                 </a>
               </span>{" "}
+              Back in 2019, I carried two laptops to run the demo - one to run
+              compiled version of Magenta code, and another to run client side
+              javascript code - with the limited knowledge in the ML deployment.
             </p>
-            <p>Paragrah 2</p>
+            <Quote>
+              <p>
+                Brain Piano backend hosted pre-trained ML model (PolyphonyRNN)
+                in a local server.
+              </p>
+            </Quote>
+          </>
+        ),
+      },
+      {
+        type: "text",
+        content: (
+          <>
+            <h1>2. Unexpected Challenge</h1>
+            <p>
+              {" "}
+              The most recent{" "}
+              <span>
+                <a href="https://github.com/magenta/magenta/blob/main/README.md">
+                  Magenta Repo
+                </a>
+              </span>{" "}
+              suggest testing the model with Colab environment due to the
+              specific software(OS, python environment) dependencies.
+            </p>
+            <Quote>
+              <h4>What is Magenta</h4>
+              <p style={{ margin: "0" }}>
+                Magenta is an open source research project exploring the role of
+                machine learning as a tool in the creative process.
+              </p>
+            </Quote>
           </>
         ),
       },
