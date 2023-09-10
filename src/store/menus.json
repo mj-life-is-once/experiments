@@ -23,7 +23,7 @@
           "name": "huggingface Ecosystem",
           "path": "/huggingface"
         },
-        { "name": "musicGeneration", "path": "/musicGeneration" }
+        { "name": "music Generation", "path": "/musicGeneration" }
       ]
     },
     {

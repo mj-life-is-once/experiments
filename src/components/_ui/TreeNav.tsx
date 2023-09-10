@@ -1,11 +1,12 @@
 "use client";
 import c from "./TreeNav.module.scss";
 import * as d3 from "d3";
-
-import { useEffect, useMemo, useState, useRef, useCallback } from "react";
-import { TreeNode } from "@/type/types";
 import { SimulationNodeDatum } from "d3";
 import { SimulationLinkDatum } from "d3";
+
+import { useEffect, useState, useRef, useCallback } from "react";
+import { TreeNode } from "@/type/types";
+import { useMediaQuery } from "@/hook/useMediaQuery";
 import { useRouter } from "next/navigation";
 const width = 1200;
 const height = 600;
@@ -17,6 +18,7 @@ const chargeStrength = -1900;
 const linkStrength = 0.1;
 
 // source : https://observablehq.com/@d3/force-directed-tree?intent=fork
+const allowedPosts = ["/huggingface", "/musicGeneration"];
 
 const TreeNav = ({ data }: { data: TreeNode }) => {
   const router = useRouter();
@@ -28,6 +30,8 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const linesRef = useRef<SVGGElement>(null);
   const nodesRef = useRef<SVGGElement>(null);
+
+  const isPageMobile = useMediaQuery("(max-width: 576px)");
 
   const drag = useCallback(
     (simulation: d3.Simulation<d3.SimulationNodeDatum, undefined>) => {
@@ -91,10 +95,7 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
             } else {
               console.log("leaf node: ", d.data.path);
               //navigate
-              if (
-                // d.data.path === "/huggingface" ||
-                d.data.path === "/musicGeneration"
-              ) {
+              if (allowedPosts.includes(d.data.path)) {
                 router.push(`/blog${d.data.path}`);
               }
             }
@@ -150,8 +151,8 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
         className={c.svgComponent}
       >
         <linearGradient id="highlight-gradient" x2="1" y2="1">
-          <stop offset="0%" stop-color="#0401b0" />
-          <stop offset="100%" stop-color="#5a0096" />
+          <stop offset="0%" stopColor="#0401b0" />
+          <stop offset="100%" stopColor="#5a0096" />
         </linearGradient>
         <g
           ref={linesRef}
@@ -173,7 +174,10 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
             const fillCircleColor = (node: any) => {
               if (node.parent === null) return "#ffffff";
               if (node.children) return "url(#highlight-gradient)";
-              if (node.data.name === "musicGeneration") return "#283230";
+              if (allowedPosts.includes(node.data.path)) {
+                //console.log("included");
+                return "#283230";
+              }
             };
 
             const radius = (node: any) => {
@@ -199,11 +203,12 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
                   <title>{node.data.name}</title>
                 </circle>
                 <text
+                  className={c.text}
                   textAnchor="middle"
                   alignmentBaseline="middle"
+                  fontSize={isPageMobile ? "1.5rem" : "1rem"}
                   x={(node as any).x}
                   y={(node as any).y}
-                  style={{ pointerEvents: "none" }}
                   fill={node.parent === null ? "#000" : "#ffffff"}
                   stroke="none"
                 >

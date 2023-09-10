@@ -19,3 +19,16 @@
   stroke: "#999";
   stroke-opacity: 0.6;
 }
+
+.text {
+  pointer-events: none;
+}
+
+/*
+$breakpoint-mobile: 576px;
+@media (max-width: $breakpoint-mobile) {
+  .text {
+    font-size: large;
+  }
+}
+*/

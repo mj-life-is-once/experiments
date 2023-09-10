@@ -6,6 +6,7 @@ import Quote from "@/components/_ui/Quote";
 import MagentaSystem from "@/svg/ml/brain_system.svg";
 import VMSystem from "@/svg/ml/vm_system.svg";
 import Image from "next/image";
+import Link from "next/link";
 
 interface BlogData {
   [key: string]: any; // type for unknown keys.
@@ -270,6 +271,21 @@ volumes:
                   height={600}
                 />
               </ImageBlock>
+              <p>
+                However, music generation process is extremely slow - it took
+                around <span className="highlight"> 30 seconds</span>
+                to generate the 10 seconds of music, and it is due to the
+                <span className="highlight">
+                  limited hardware specification
+                </span>{" "}
+                of the free GCP instance.(2 vCPU | RAM 1024 MiB | Storage 10Gb
+                Standard (Non-SSD))
+              </p>
+              <p>
+                I started to search better options to host the ML service, this
+                journey will be covered in{" "}
+                <Link href="/huggingface">the next post</Link>.
+              </p>
               <Quote>
                 <h4>Source Code</h4>
                 <p>
