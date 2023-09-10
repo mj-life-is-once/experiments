@@ -121,15 +121,21 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
   }, [drag, links, nodes, root]);
 
   useEffect(() => {
-    //console.log(nodes);
-  }, [links, nodes]);
+    const handleResize = () => {
+      setDimension({
+        w: containerRef.current?.offsetWidth as number,
+        h: containerRef.current?.offsetHeight as number,
+      });
+
+      window.addEventListener("resize", handleResize);
+      handleResize();
+      return () => window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     //setDimension()
-    setDimension({
-      w: containerRef.current?.offsetWidth as number,
-      h: containerRef.current?.offsetHeight as number,
-    });
+
     update();
   }, [update]);
 
