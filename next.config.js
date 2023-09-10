@@ -24,6 +24,16 @@ const nextConfig = {
 
     return config;
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.rawpixel.com",
+        port: "",
+        pathname: "/image_1300/**",
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;

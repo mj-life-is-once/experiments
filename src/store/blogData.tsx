@@ -13,21 +13,41 @@ interface BlogData {
 }
 
 export const BLOGS: BlogData = {
-  // huggingface: {
-  //   intro: {
-  //     category: "Machine Learning",
-  //     title: <h1>Develop ML Webapp with Huggingface APIS</h1>,
-  //     description: (
-  //       <p>
-  //         Through this experience, I explored the possibility of huggingface as
-  //         a backend for hosting ML engines to create
-  //       </p>
-  //     ),
+  huggingface: {
+    intro: {
+      category: "Machine Learning",
+      title: <h1>Develop ML Webapp with Huggingface APIS</h1>,
+      description: (
+        <p>
+          Through this experience, I explored the possibility of huggingface as
+          a backend for hosting ML engines to create
+        </p>
+      ),
 
-  //     backLink: { title: "Back to Experiments", href: "/" },
-  //     tags: ["huggingface", "python", "react"],
-  //   },
-  // },
+      backLink: { title: "Back to Experiments", href: "/" },
+      tags: ["huggingface", "python", "react"],
+    },
+    contents: [
+      {
+        content: (
+          <>
+            <TextBlock>
+              <h1>Content Coming Soon :)</h1>
+            </TextBlock>
+
+            <ImageBlock type="img">
+              <Image
+                src="https://images.rawpixel.com/image_1300/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA4L3JtNTU4LWVsZW1lbnRzLXdvcmQtMDEteC5qcGc.jpg"
+                alt="coming soon"
+                width={800}
+                height={600}
+              />
+            </ImageBlock>
+          </>
+        ),
+      },
+    ],
+  },
   musicGeneration: {
     intro: {
       category: "Machine Learning",
@@ -272,6 +292,23 @@ volumes:
                 />
               </ImageBlock>
               <p>
+                When receiving HTTP GET request in /generate endpoint, the
+                backend server generates classical music in the style of Bach
+                with the melody line provided.
+              </p>
+              <Quote>
+                <h4>Music Archive (Google Drive)</h4>
+                <p>
+                  Open{" "}
+                  <span>
+                    <a href="https://drive.google.com/drive/folders/1DczeASlw9bvxW7nvOMQZ3RdJcBg96GmQ?usp=sharing">
+                      this link
+                    </a>
+                  </span>{" "}
+                  to listen to check the generated music{" "}
+                </p>
+              </Quote>
+              <p>
                 However, music generation process is extremely slow - it took
                 around <span className="highlight"> 30 seconds</span>
                 to generate the 10 seconds of music, and it is due to the
@@ -284,7 +321,7 @@ volumes:
               <p>
                 I started to search better options to host the ML service, this
                 journey will be covered in{" "}
-                <Link href="/huggingface">the next post</Link>.
+                <Link href="/blog/huggingface">the next post</Link>.
               </p>
               <Quote>
                 <h4>Source Code</h4>
