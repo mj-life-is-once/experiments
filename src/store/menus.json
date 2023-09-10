@@ -20,7 +20,7 @@
       "path": "/ml",
       "children": [
         {
-          "name": "huggingface Ecosystem",
+          "name": "huggingface",
           "path": "/huggingface"
         },
         { "name": "music Generation", "path": "/musicGeneration" }

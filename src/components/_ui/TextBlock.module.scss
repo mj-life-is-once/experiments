@@ -19,3 +19,12 @@
     }
   }
 }
+
+$breakpoint-mobile: 576px;
+@media (max-width: $breakpoint-mobile) {
+  .text {
+    h1 {
+      line-height: 1.2;
+    }
+  }
+}
