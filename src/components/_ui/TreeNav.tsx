@@ -156,11 +156,12 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
           ))}
         </g>
 
-        <g ref={nodesRef} style={{ fill: "#283230", stroke: "#fff" }}>
+        <g ref={nodesRef} style={{ fill: "#cfcfcf", stroke: "#fff" }}>
           {nodes.map((node, index) => {
             const fillCircleColor = (node: any) => {
               if (node.parent === null) return "#ffffff";
               if (node.children) return "url(#highlight-gradient)";
+              if (node.data.name === "musicGeneration") return "#283230";
             };
 
             const radius = (node: any) => {
