@@ -4,3 +4,11 @@
   border-radius: var(--border-radius);
   background-color: rgb(243, 245, 239);
 }
+
+$breakpoint-tablet: 768px;
+
+@media (max-width: $breakpoint-tablet) {
+  .block {
+    padding: 5rem 3rem;
+  }
+}

@@ -33,15 +33,14 @@ export const BLOGS: BlogData = {
       title: <h1>Deploy Magenta ML model in Google Cloud Platform</h1>,
       description: (
         <p>
-          I would like to introduce my exploration journey to improve my old
-          project{" "}
+          I would like to introduce my exploration journey to improve my old{" "}
           <span>
             <a href="https://www.minjoocho.com/projects/a1?category=artistic">
               Brain Piano
             </a>
           </span>{" "}
-          in a modern architecture stack utilizing{" "}
-          <span className="highlight">Google Cloud Platform</span>.
+          project in a modern architecture stack utilizing{" "}
+          <span className="highlight">Google Cloud Platform.</span>
         </p>
       ),
       backLink: { title: "Back to Experiments", href: "/" },
@@ -54,26 +53,25 @@ export const BLOGS: BlogData = {
             <TextBlock>
               <h1>1. Brain Piano backends in Modern Architecture</h1>
               <p>
-                After gaining more knowledge on the cloud infrastructure based
-                micro-services architecture, I wanted to regain life to the{" "}
+                After gaining more knowledge on the cloud infrastructure-based
+                micro-services architecture, I wanted to regain life for the{" "}
                 <span>
                   <a href="https://www.minjoocho.com/projects/a1?category=artistic">
                     Brain Piano Project
                   </a>
-                </span>{" "}
-                Back in 2019, I carried two laptops to run the demo - one to run
-                compiled version of Magenta code, and another to run client side
-                javascript code - with the limited knowledge in the ML
-                deployment.
+                </span>
+                . In 2019, I carried two laptops to run the demo - one to run a
+                compiled version of Magenta code and another to run client-side
+                javascript code - with limited knowledge of ML deployment.
               </p>
               <ul>
                 Here are criteria of the new service
                 <li>
-                  The server needs to be{" "}
+                  The server must be{" "}
                   <span className="highlight">remotely hosted</span>
                 </li>
                 <li>
-                  The server need to be{" "}
+                  The server must be{" "}
                   <span className="highlight">publicly accessible</span>
                 </li>
               </ul>
@@ -82,7 +80,7 @@ export const BLOGS: BlogData = {
               type="svg"
               caption={
                 <p>
-                  Fig 1. Brain Piano backend hosted pre-trained ML model
+                  Fig 1. Brain Piano backend hosted a pre-trained ML model
                   (PolyphonyRNN) in a local server.
                 </p>
               }
@@ -105,21 +103,21 @@ export const BLOGS: BlogData = {
                     Magenta Repo
                   </a>
                 </span>{" "}
-                suggest testing the model with Colab environment due to the
-                specific software(OS, python environment) dependencies.
+                suggest testing the model with the Colab environment due to the
+                specific software(OS, Python environment) dependencies.
               </p>
               <Quote>
                 <h4>What is Magenta?</h4>
                 <p>
                   Magenta is an open source research project introduced by
-                  Google Brain team in 2017,exploring the role of machine
+                  Google Brain team in 2017, exploring the role of machine
                   learning as a tool in the creative process.
                 </p>
               </Quote>
               <p>
-                However, Colab excutes codes in runtime environment and it is
-                not suitable for my usecase. Moreover, I found docker
-                environment, that used to be introduced as an alternative
+                However, Colab executes codes in a runtime environment, which is
+                unsuitable for my use case. Moreover, I found that the docker
+                environment, which used to be introduced as an alternative
                 installation method, is moved from their official documentation.
               </p>
             </TextBlock>
@@ -203,7 +201,7 @@ volumes:
               <h1>4. Deploy Code in GCP</h1>
               <p>
                 I decided to deploy the code to the GCP free instance(e2-micro)
-                to create publicly accessible server.
+                to create the publicly accessible server.
               </p>
               <p>
                 To receive the command from the front-end and deliver the
@@ -211,9 +209,9 @@ volumes:
                 <span className="highlight">FlaskAPI server.</span>
               </p>
               <p>
-                Generated midi file from the magenta is then uploaded to the{" "}
+                The generated midi file from the magenta is then uploaded to{" "}
                 <span className="highlight">Google Drive</span> to share
-                input/output files with the frontend. The diagram below
+                input/output files with the front-end. The diagram below
                 summarizes what is happening inside the GCP instance.
               </p>
               <ImageBlock
@@ -240,13 +238,15 @@ volumes:
                 </p>
               </Quote>
               <p>
-                I will not cover the specific steps to deploy docker container
-                to GCP instance this time. Instead I recommend read{" "}
+                This time, I will not cover the specific steps to deploy the
+                docker container to the GCP instance. Instead, I recommend
+                reading{" "}
                 <span>
                   <a href="https://towardsdatascience.com/how-to-deploy-docker-containers-to-the-cloud-b4d89b2c6c31">
-                    this article to follow through the details.
+                    this article
                   </a>
                 </span>{" "}
+                to follow through with the details.
               </p>
             </TextBlock>
           </>
@@ -258,29 +258,27 @@ volumes:
             <TextBlock>
               <h1>5. Result</h1>
               <p>
-                The picture below shows the public webpage deployed to GCP
-                instance. This swaggerUI webpage shows the HTTP endpoints of
+                The picture below shows the public webpage deployed to the GCP
+                instance. This swagger UI webpage shows the HTTP endpoints of
                 Flask API.
               </p>
-              <ImageBlock type="img" style={{ backgroundColor: "transparent" }}>
+              <ImageBlock type="img">
                 <Image
                   src="/img/ml/generation/backend.jpg"
-                  fill
-                  style={{
-                    objectFit: "contain",
-                    display: "block",
-                  }}
                   alt="result"
+                  width={800}
+                  height={600}
                 />
               </ImageBlock>
               <Quote>
                 <h4>Source Code</h4>
                 <p>
-                  Detailed instruction and source code can be found from
+                  Detailed instruction and source code can be found from my{" "}
                   <span>
                     <a href="https://github.com/mj-life-is-once/magenta-docker">
-                      my github repo.
+                      github repo
                     </a>
+                    .
                   </span>
                 </p>
               </Quote>

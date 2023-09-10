@@ -25,6 +25,7 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
   const [links, setLinks] = useState(root.links());
   const [nodes, setNodes] = useState(root.descendants());
 
+  const containerRef = useRef<HTMLDivElement>(null);
   const linesRef = useRef<SVGGElement>(null);
   const nodesRef = useRef<SVGGElement>(null);
 
@@ -124,11 +125,16 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
   }, [links, nodes]);
 
   useEffect(() => {
+    //setDimension()
+    setDimension({
+      w: containerRef.current?.offsetWidth as number,
+      h: containerRef.current?.offsetHeight as number,
+    });
     update();
   }, [update]);
 
   return (
-    <div className={c.svgContainer}>
+    <div className={c.svgContainer} ref={containerRef}>
       <svg
         width={dimension.w}
         height={dimension.h}

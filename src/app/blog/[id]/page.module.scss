@@ -8,3 +8,28 @@
   position: static;
   padding: 4rem 2rem;
 }
+
+$breakpoint-tablet: 768px;
+$breakpoint-mobile: 576px;
+@media (max-width: $breakpoint-tablet) {
+  .blog {
+    margin: auto;
+    width: 90%;
+    height: 100%;
+  }
+
+  .body {
+    padding: 0 0;
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .blog {
+    width: 100%;
+    height: 100%;
+  }
+
+  .body {
+    padding: 0 0;
+  }
+}
