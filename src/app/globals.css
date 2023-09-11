@@ -43,8 +43,12 @@ a {
   text-decoration: underline;
 }
 
+circle {
+  transition: 0.5s;
+}
+
 circle:hover {
-  fill: var(--highlight_color_1);
+  fill: var(--highlight_color_2);
 }
 
 button {

@@ -20,21 +20,24 @@ const Home = async () => {
 
   return (
     <main className={c.main}>
-      <Intro
-        title={
-          <h1>
-            Minjoo&#x27;s Experiment
-            <div style={{ color: "#ffbf00" }}>(WIP)</div>
-          </h1>
-        }
-        description={
-          <p>
-            This is (going to be) showcasing Minjoo&#x27;s various technical
-            experiments. Click on the nodes to read the post.
-          </p>
-        }
-        backLink={{ title: "Back to Home", href: "http://minjoocho.com" }}
-      />
+      <div className={c.titleBlock}>
+        <Intro
+          title={
+            <h1>
+              Minjoo&#x27;s Experiment
+              <div style={{ color: "#ffbf00" }}>(WIP)</div>
+            </h1>
+          }
+          description={
+            <p>
+              This is (going to be) showcasing Minjoo&#x27;s various technical
+              experiments. Click on the nodes to read the post.
+            </p>
+          }
+          backLink={{ title: "Back to Home", href: "http://minjoocho.com" }}
+        />
+      </div>
+
       <TreeNav data={promiseData}></TreeNav>
     </main>
   );

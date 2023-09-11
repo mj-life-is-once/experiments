@@ -10,7 +10,6 @@
 }
 
 $breakpoint-tablet: 768px;
-$breakpoint-mobile: 576px;
 @media (max-width: $breakpoint-tablet) {
   .blog {
     margin: auto;
@@ -22,7 +21,7 @@ $breakpoint-mobile: 576px;
     padding: 0 0;
   }
 }
-
+$breakpoint-mobile: 576px;
 @media (max-width: $breakpoint-mobile) {
   .blog {
     width: 100%;

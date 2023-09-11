@@ -3,3 +3,10 @@
   position: relative;
   /* background-color: blue; */
 }
+.titleBlock {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  backdrop-filter: blur(2px);
+  border-radius: 5px;
+}
