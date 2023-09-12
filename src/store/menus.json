@@ -20,10 +20,10 @@
       "path": "/ml",
       "children": [
         {
-          "name": "huggingface",
+          "name": "Hugging Face",
           "path": "/huggingface"
         },
-        { "name": "music Generation", "path": "/musicGeneration" }
+        { "name": "Music Generation", "path": "/musicGeneration" }
       ]
     },
     {
