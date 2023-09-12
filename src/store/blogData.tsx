@@ -4,11 +4,13 @@ import TextBlock from "@/components/_ui/TextBlock";
 import ImageBlock from "@/components/_ui/ImageBlock";
 import Quote from "@/components/_ui/Quote";
 import MagentaSystem from "@/svg/ml/brain_system.svg";
-import MLLayout from "@/svg/ml/hugging_layout.svg";
 import HuggingSystem from "@/svg/ml/hugging_system.svg";
+import YoutubeEmbed from "@/components/_ui/YoutubeEmbed";
 import VMSystem from "@/svg/ml/vm_system.svg";
+import HuggingLayout from "@/svg/ml/hugging_layout.svg";
 import Image from "next/image";
 import Link from "next/link";
+import IFrame from "@/components/_ui/IFrame";
 
 interface BlogData {
   [key: string]: any; // type for unknown keys.
@@ -152,7 +154,7 @@ export const BLOGS: BlogData = {
                 as described below.
               </p>
               <ImageBlock type="svg" caption="Fig1. ML Model flow">
-                <MLLayout />
+                <HuggingLayout style={{ height: "600px" }} />
               </ImageBlock>
               <Quote>
                 <h4>Resources</h4>
@@ -386,20 +388,38 @@ demo = gr.Series(series_1, series_2, series_3)
                     </a>
                   </span>
                 </p>
-              </Quote>
-            </TextBlock>
-            <TextBlock>
-              <Quote>
-                <h4>Resource</h4>
                 <p>
                   <span>
-                    1.{" "}
+                    3.{" "}
                     <a href="https://youtu.be/_j7JEDWuqLE?si=0NESRneREWWSFQ1g">
                       Hugging Face + Langchain in 5 mins by AI Jason
                     </a>
                   </span>
                 </p>
               </Quote>
+            </TextBlock>
+            <TextBlock>
+              <h1>6. Final Result</h1>
+              <p>
+                I was not able to make the Space public due to the OpenAPI
+                request limits. However, I will leave the working screen
+                records, and the output music below.
+              </p>
+              <YoutubeEmbed embedId="m9zf5A4vTBg" />
+              <ImageBlock type="svg" caption="Fig2. Full System Flow">
+                <HuggingSystem />
+              </ImageBlock>
+              <h4>Music Generator with Melody(Public Space)</h4>
+              <p>
+                I also included the link to the public Space that I put examples
+                prompts to the Facebook&apos;s MusicGen (with optional melody
+                input). Please Note that it will take around 2-3 minutes to
+                generate 5 seconds of music with the free-tier plan.
+              </p>{" "}
+              <IFrame
+                src="https://minjoolisacho87-musicgen-fb.hf.space"
+                title="Music Generator"
+              />
             </TextBlock>
           </>
         ),
