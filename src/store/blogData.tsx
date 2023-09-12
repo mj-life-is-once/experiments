@@ -4,6 +4,8 @@ import TextBlock from "@/components/_ui/TextBlock";
 import ImageBlock from "@/components/_ui/ImageBlock";
 import Quote from "@/components/_ui/Quote";
 import MagentaSystem from "@/svg/ml/brain_system.svg";
+import MLLayout from "@/svg/ml/hugging_layout.svg";
+import HuggingSystem from "@/svg/ml/hugging_system.svg";
 import VMSystem from "@/svg/ml/vm_system.svg";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,33 +18,389 @@ export const BLOGS: BlogData = {
   huggingface: {
     intro: {
       category: "Machine Learning",
-      title: <h1>Develop ML Webapp with Huggingface APIS</h1>,
+      title: <h1>Develop ML Webapp with Hugging Face APIS</h1>,
       description: (
         <p>
-          Through this experience, I explored the possibility of huggingface as
-          a backend for hosting ML engines to create
+          Through this experience, I explored the possibility of{" "}
+          <span className="highlight">hugging Face</span> as a backendAPI for
+          hosting multiple ML engines to create multimodal experience.
         </p>
       ),
 
       backLink: { title: "Back to Experiments", href: "/" },
-      tags: ["huggingface", "python", "react"],
+      tags: ["huggingface", "python", "transformer", "gradio"],
     },
     contents: [
       {
         content: (
           <>
             <TextBlock>
-              <h1>Content Coming Soon :)</h1>
+              <h1>1. What is Hugging Face 🤗</h1>
+              <p>
+                <span>
+                  <a href="https://huggingface.co/">Huggingface</a>
+                </span>
+                , undoubtly, is one of the most influential AI startup companies
+                that you hear the name very often today. The backers of
+                Huggingface includes Google, Amazon, Nvidia, Salesforce, AMD,
+                Intel, IBM and Qualcomm, and releaing the newest ML model
+                through their platform has become a tradition in the AI
+                industry, from Big Corps to the small sized company.
+              </p>
+              <Quote>
+                <ul>
+                  <h4>More Resources</h4>
+                  <li>
+                    <p>
+                      1. News: <br />
+                      <span>
+                        <a href="https://techfundingnews.com/hugging-face-github-for-ai-raises-235m-from-nvidia-amazon-and-other-tech-giants/">
+                          Hugging face, GitHub for AI, raises $235M from Nvidia,
+                          Amazon and other tech giants
+                        </a>
+                      </span>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      2. Youtube video: <br />
+                      <span>
+                        <a href="https://www.youtube.com/watch?v=v800ToFbLRk">
+                          HuggingFace - An AI community with Machine Learning,
+                          Datasets, Models and More
+                        </a>
+                      </span>
+                    </p>
+                  </li>
+                </ul>
+              </Quote>
             </TextBlock>
-
-            <ImageBlock type="img">
-              <Image
-                src="https://images.rawpixel.com/image_1300/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA4L3JtNTU4LWVsZW1lbnRzLXdvcmQtMDEteC5qcGc.jpg"
-                alt="coming soon"
-                width={800}
-                height={600}
+            <TextBlock>
+              <h1>2. Hugging Face Hub Overview</h1>
+              <p>
+                Some describes Huggingspace as a "Github" for AI community. If
+                that is true, what makes Huggingface shines more than Github? To
+                understand this, you need to look into three concepts - Models,
+                Datasets and Spaces.
+              </p>
+              <ul>
+                <li>
+                  <span className="highlight">Model Hub</span> : The Model Hub
+                  is where the members of the Hugging Face community can host
+                  all of their models.
+                </li>
+                <li>
+                  <span className="highlight">Dataset Hub</span> : Hugging Face
+                  Hub hosts a large number of community-curated datasets, and
+                  each dataset is a Git repository.
+                </li>
+                <li>
+                  <span className="highlight">Space Hub</span> : This is the
+                  core differentiator of Hugging Face from other development
+                  hubs. Hugging Face provides intuitive libraries (ML and GUI)
+                  and infrastructure to showcase the usecase of the engine. It
+                  uses Git under the hood.
+                </li>
+              </ul>
+              <Quote>
+                <h4>Resource</h4>
+                <span>
+                  1.{" "}
+                  <a href="https://huggingface.co/docs/hub/index">
+                    Hugging Face Hub documentation
+                  </a>
+                </span>
+              </Quote>
+            </TextBlock>
+            <TextBlock>
+              <h1>3. What do I want to Build</h1>
+              <p>
+                As I mentioned above, I think the beauty of Hugging Face is in
+                the Space Hub, where they put a lot of efforts to abstract the
+                difficult technical layers in ML with their{" "}
+                <span>
+                  <a href="https://github.com/huggingface/transformers">
+                    Transformer
+                  </a>
+                </span>{" "}
+                library, and provide pre-configured infrastructure to easily
+                deploy experiences and share with the broder community.
+              </p>
+              <p>
+                Let&apos;s explore Hugging Face Hub by creating an example
+                experience. As I was on my tech journey to revive my old project
+                <span>
+                  <a href="https://www.minjoocho.com/projects/a1?category=artistic">
+                    (Brain Piano)
+                  </a>
+                </span>{" "}
+                , I wanted create something that has an audio output in the end.
+                So, I jotted down my fast-prototyping strategy as below.
+              </p>
+              <ul>
+                <li>
+                  The output of the experience will be the music audio file.
+                </li>
+                <li>
+                  I want multimodal experience - Having other multimedia as an
+                  input
+                </li>
+              </ul>
+              <p>
+                After a big of research, I decided to use two ML models in the
+                Data Hub with ChatGPT, and weave them together to create a music
+                as described below.
+              </p>
+              <ImageBlock type="svg" caption="Fig1. ML Model flow">
+                <MLLayout />
+              </ImageBlock>
+              <Quote>
+                <h4>Resources</h4>
+                <p>
+                  <span>
+                    1.{" "}
+                    <a href="https://huggingface.co/Salesforce/blip-image-captioning-large">
+                      Image to Text Model -
+                      Salesforce/blip-image-captioning-large
+                    </a>
+                  </span>
+                </p>
+                <p>
+                  <span>
+                    2.{" "}
+                    <a href="https://python.langchain.com/docs/integrations/tools/chatgpt_plugins">
+                      ChatGPI Plugins - Langchain
+                    </a>
+                  </span>
+                </p>
+                <p>
+                  <span>
+                    3.{" "}
+                    <a href="https://huggingface.co/facebook/musicgen-small">
+                      Music Generator Model - Facebook
+                    </a>
+                  </span>
+                </p>
+              </Quote>
+            </TextBlock>
+            <TextBlock>
+              <h1>4. How to Hugging Face</h1>
+              <p>
+                After creating the account, click on the &quot;+ New Space&quot;
+                button to create a space.
+              </p>
+              <ImageBlock type="img">
+                <Image
+                  src="/img/ml/huggingface/create_space_1.jpg"
+                  alt="create_space_1"
+                  width={800}
+                  height={600}
+                />
+              </ImageBlock>
+              <p>
+                Name the project, and select &quot;Gradio&quot; development
+                environment. Gradio is an open-source Python package that allows
+                developers to quickly create customized UI for ML models
+                effortlessly. Moreover, I was fascinated by the feature that
+                automatically generates API endpoints along with the web
+                interface.
+              </p>
+              <ImageBlock type="img">
+                <Image
+                  src="/img/ml/huggingface/create_space_2.jpg"
+                  alt="create_space_1"
+                  width={800}
+                  height={600}
+                />
+              </ImageBlock>
+              <p>
+                After the space is created, you will then see the instruction to
+                clone the repository to your local enviroment by familar git
+                commands. You can later push to the main to deploy to the Space
+                by
+                <span>
+                  2.{" "}
+                  <a href="https://huggingface.co/docs/hub/security-git-ssh">
+                    setting SSH credentials
+                  </a>
+                </span>
+                .
+              </p>
+              <ImageBlock type="img">
+                <Image
+                  src="/img/ml/huggingface/create_space_3.jpg"
+                  alt="create_space_1"
+                  width={800}
+                  height={600}
+                />
+              </ImageBlock>
+            </TextBlock>
+            <TextBlock>
+              <h1>5. Develop App</h1>
+              <p>
+                As I mentioned above, I think the beauty of Hugging Face is in
+                the Space Hub, where they put a lot of efforts to abstract the
+                difficult technical layers in ML with their Transformer library,
+                and provide pre-configured infrastructure to easily deploy
+                experiences and share with the broder community.
+              </p>
+              <CodeBlock
+                language="python"
+                code={`
+# File Structure
+.
+├── requirements.txt # Python dependencies
+├── packages.txt # Debian dependencies
+└── app.py # Our main code
+`}
               />
-            </ImageBlock>
+              <p>
+                Now let&apos;s write the code. To download the pre-trained ML
+                engine hosted in Hugging Face Hub and predict the result
+                locally, we import transformer library. You can easily find the
+                instruction to import ML models using transformer from this{" "}
+                <span>
+                  <a href="https://huggingface.co/tasks">task page</a>.
+                </span>
+              </p>
+              <CodeBlock
+                language="python"
+                code={`
+import scipy
+from datasets import load_dataset
+from langchain.chains import LLMChain
+from langchain.llms import OpenAI
+from langchain.prompts import PromptTemplate
+from transformers import AutoProcessor, MusicgenForConditionalGeneration, pipeline
+
+
+# Step 1: Image to Text 
+def imageToText(url):
+    image_to_text = pipeline(
+        "image-to-text", model="Salesforce/blip-image-captioning-large"
+    )
+    text = image_to_text(url)
+    return text[0]["generated_text"]
+
+
+# Step 2: Generate Story from ChatGPT 
+def storyGeneratorGPT(user_input):
+    template = """
+    You are a music story teller;
+    You can suggest music that suits the scenario;
+    The suggested music should include the genre of the music as well as the style where it is inpired from;
+    The suggestion should be no more than 20 words.
+    
+    CONTEXT: {scenario}
+    STORY:
+    """
+
+    prompt = PromptTemplate(template=template, input_variables=["scenario"])
+    prompt.format(scenario=user_input)
+    story_chain = LLMChain(
+        llm=OpenAI(model_name="gpt-3.5-turbo", temperature=1),
+        prompt=prompt,
+        verbose=True,
+    )
+    story = story_chain.run(user_input)
+    # print(story)
+    return story
+
+# Step 3: Generate Music based on the description
+def generate(text):
+    print("generate..")
+    print(text)
+    processor = AutoProcessor.from_pretrained("facebook/musicgen-small")
+    model = MusicgenForConditionalGeneration.from_pretrained("facebook/musicgen-small")
+    inputs = processor(
+        # audio=load_input(),
+        text=[text],
+        padding=True,
+        return_tensors="pt",
+    )
+
+    audio_values = model.generate(**inputs, max_new_tokens=256)  # 256
+    sampling_rate = model.config.audio_encoder.sampling_rate
+    resultFile = "musicgen_out.wav"
+    scipy.io.wavfile.write(
+        resultFile,
+        rate=sampling_rate,
+        data=audio_values[0, 0].numpy(),
+    )
+    return resultFile
+`}
+              />
+              <p>
+                Next is to connect three ML functions with Gradio UIs. You will
+                see here how simple it is to connect the codes and generate the
+                decent interface. By calling{" "}
+                <span className="highlight">gr.Series</span> function, we can
+                just connect the inputs and outputs of the ML functions like a
+                LEGO block. The task is as simple as returning the values in the
+                right formats.
+              </p>
+              <CodeBlock
+                language="python"
+                code={`
+import gradio as gr
+
+# ML functions above are defined here ...
+
+series_1 = gr.Interface(
+    fn=imageToText,
+    inputs="pil",
+    outputs="text",
+    examples=["beatles.png"],
+)
+series_2 = gr.Interface(fn=storyGeneratorGPT, inputs="text", outputs="text")
+series_3 = gr.Interface(fn=generate, inputs="text", outputs="video")
+demo = gr.Series(series_1, series_2, series_3)
+`}
+              />
+              <p>
+                After writing the code, I uploaded the code to the Space. Then
+                after a while, you will see find this amazing interface. The
+                full code for the project can be found{" "}
+                <span>
+                  <a href="https://github.com/mj-life-is-once/huggingface_musicgen">
+                    here
+                  </a>
+                </span>
+                .
+              </p>
+              <Quote>
+                <h4>Resource</h4>
+                <p>
+                  <span>
+                    1.{" "}
+                    <a href="https://huggingface.co/docs/transformers/index">
+                      Hugging Face Transformer documentation
+                    </a>
+                  </span>
+                </p>
+                <p>
+                  <span>
+                    2.{" "}
+                    <a href="https://www.gradio.app/docs/interface">
+                      Gradio documentation
+                    </a>
+                  </span>
+                </p>
+              </Quote>
+            </TextBlock>
+            <TextBlock>
+              <Quote>
+                <h4>Resource</h4>
+                <p>
+                  <span>
+                    1.{" "}
+                    <a href="https://youtu.be/_j7JEDWuqLE?si=0NESRneREWWSFQ1g">
+                      Hugging Face + Langchain in 5 mins by AI Jason
+                    </a>
+                  </span>
+                </p>
+              </Quote>
+            </TextBlock>
           </>
         ),
       },

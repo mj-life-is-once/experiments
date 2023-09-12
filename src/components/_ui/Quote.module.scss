@@ -11,4 +11,19 @@
     font-size: 1rem;
     margin: 0;
   }
+
+  ul {
+    margin: 1rem;
+    li {
+      list-style-type: none;
+      p {
+        font-weight: bold;
+      }
+
+      span {
+        font-size: medium;
+        font-weight: normal;
+      }
+    }
+  }
 }
