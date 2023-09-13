@@ -78,7 +78,6 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
 
     //console.log(link);
     const link = d3.select(linesRef.current!).selectAll("line").data(links);
-
     const node = d3.select(nodesRef.current!).selectAll("circle").data(nodes);
     const text = d3.select(nodesRef.current!).selectAll("text").data(nodes);
 
@@ -93,8 +92,9 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
             if (d._children) {
               d.children = d._children;
             } else {
-              console.log("leaf node: ", d.data.path);
+              // console.log("leaf node: ", d.data.path);
               //navigate
+              // node.on('')
               if (allowedPosts.includes(d.data.path)) {
                 router.push(`/blog${d.data.path}`);
               }
