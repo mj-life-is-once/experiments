@@ -40,13 +40,13 @@ export const BLOGS: BlogData = {
               <p>
                 <span>
                   <a href="https://huggingface.co/">Huggingface</a>
-                </span>
-                , undoubtly, is one of the most influential AI startup companies
-                that you hear the name very often today. The backers of
-                Huggingface includes Google, Amazon, Nvidia, Salesforce, AMD,
-                Intel, IBM and Qualcomm, and releaing the newest ML model
-                through their platform has become a tradition in the AI
-                industry, from Big Corps to the small sized company.
+                </span>{" "}
+                is undoubtedly one of the most influential AI startup companies
+                you often hear the name of. The backers of Huggingface include
+                Google, Amazon, Nvidia, Salesforce, AMD, Intel, IBM and
+                Qualcomm, and releasing the newest ML model through their
+                platform has become a tradition in the AI industry, from Big
+                Corps to small-sized companies.
               </p>
               <Quote>
                 <ul>
@@ -79,10 +79,10 @@ export const BLOGS: BlogData = {
             <TextBlock>
               <h1>2. Hugging Face Hub Overview</h1>
               <p>
-                Some describes Huggingspace as a "Github" for AI community. If
-                that is true, what makes Huggingface shines more than Github? To
-                understand this, you need to look into three concepts - Models,
-                Datasets and Spaces.
+                Some describe Huggingspace as a "Github" for the AI community.
+                If that is true, what makes Huggingface shine more than Github?
+                To understand this, you need to look into three concepts -
+                Models, Datasets and Spaces.
               </p>
               <ul>
                 <li>
@@ -99,7 +99,7 @@ export const BLOGS: BlogData = {
                   <span className="highlight">Space Hub</span> : This is the
                   core differentiator of Hugging Face from other development
                   hubs. Hugging Face provides intuitive libraries (ML and GUI)
-                  and infrastructure to showcase the usecase of the engine. It
+                  and infrastructure to showcase the use case of the engine. It
                   uses Git under the hood.
                 </li>
               </ul>
@@ -116,16 +116,16 @@ export const BLOGS: BlogData = {
             <TextBlock>
               <h1>3. What do I want to Build</h1>
               <p>
-                As I mentioned above, I think the beauty of Hugging Face is in
-                the Space Hub, where they put a lot of efforts to abstract the
-                difficult technical layers in ML with their{" "}
+                As I mentioned above, the beauty of Hugging Face is in the Space
+                Hub, where they put much effort into abstracting the complex
+                technical layers in ML with their{" "}
                 <span>
                   <a href="https://github.com/huggingface/transformers">
                     Transformer
                   </a>
                 </span>{" "}
-                library, and provide pre-configured infrastructure to easily
-                deploy experiences and share with the broder community.
+                library and provide pre-configured infrastructure to deploy
+                experiences and share with the broader community quickly.
               </p>
               <p>
                 Let&apos;s explore Hugging Face Hub by creating an example
@@ -134,23 +134,23 @@ export const BLOGS: BlogData = {
                   <a href="https://www.minjoocho.com/projects/a1?category=artistic">
                     (Brain Piano)
                   </a>
-                </span>{" "}
-                , I wanted create something that has an audio output in the end.
-                So, I jotted down my fast-prototyping strategy as below.
+                </span>
+                , I wanted to create something that had an audio output in the
+                end. So, I jotted down my fast-prototyping strategy as below.
               </p>
               <ul>
                 <li>
                   The output of the experience will be the music audio file.
                 </li>
                 <li>
-                  I want multimodal experience - Having other multimedia as an
-                  input
+                  I want a multimodal experience - Having other multimedia as an
+                  input.
                 </li>
               </ul>
               <p>
-                After a big of research, I decided to use two ML models in the
-                Data Hub with ChatGPT, and weave them together to create a music
-                as described below.
+                After much research, I decided to use two ML models in the Data
+                Hub with ChatGPT and weave them together to create a piece of
+                music as described below.
               </p>
               <ImageBlock type="svg" caption="Fig1. ML Model flow">
                 <HuggingLayout style={{ height: "600px" }} />
@@ -200,11 +200,11 @@ export const BLOGS: BlogData = {
               </ImageBlock>
               <p>
                 Name the project, and select &quot;Gradio&quot; development
-                environment. Gradio is an open-source Python package that allows
-                developers to quickly create customized UI for ML models
-                effortlessly. Moreover, I was fascinated by the feature that
-                automatically generates API endpoints along with the web
-                interface.
+                environment. <span className="highlight">Gradio</span> is an
+                open-source Python package that allows developers to create
+                customized UI for ML models effortlessly and quickly. Moreover,
+                I was fascinated by the feature that automatically generates API
+                endpoints and the web interface.
               </p>
               <ImageBlock type="img">
                 <Image
@@ -215,12 +215,10 @@ export const BLOGS: BlogData = {
                 />
               </ImageBlock>
               <p>
-                After the space is created, you will then see the instruction to
-                clone the repository to your local enviroment by familar git
-                commands. You can later push to the main to deploy to the Space
-                by
+                After creating the Space, you will be instructed to clone the
+                repository to your local environment with familiar git commands.
+                You can later push to the main to deploy to the Space by{" "}
                 <span>
-                  2.{" "}
                   <a href="https://huggingface.co/docs/hub/security-git-ssh">
                     setting SSH credentials
                   </a>
@@ -239,11 +237,13 @@ export const BLOGS: BlogData = {
             <TextBlock>
               <h1>5. Develop App</h1>
               <p>
-                As I mentioned above, I think the beauty of Hugging Face is in
-                the Space Hub, where they put a lot of efforts to abstract the
-                difficult technical layers in ML with their Transformer library,
-                and provide pre-configured infrastructure to easily deploy
-                experiences and share with the broder community.
+                The image below shows the minimal files that need to be included
+                in the project folder and their functions.{" "}
+                <span className="highlight">requirements.txt</span> is where you
+                need to include Python dependencies and{" "}
+                <span className="highlight">packages.txt</span> to list your
+                Debian dependencies. <span className="highlight">app.py</span>{" "}
+                will be the entry point to your program.
               </p>
               <CodeBlock
                 language="python"
@@ -256,10 +256,10 @@ export const BLOGS: BlogData = {
 `}
               />
               <p>
-                Now let&apos;s write the code. To download the pre-trained ML
-                engine hosted in Hugging Face Hub and predict the result
-                locally, we import transformer library. You can easily find the
-                instruction to import ML models using transformer from this{" "}
+                Now, let&apos;s write the app code. We import the Transformer
+                library to download the pre-trained ML engine hosted in Hugging
+                Face Hub and predict the result locally. You can easily find the
+                instructions to import ML models using the Transformer from this{" "}
                 <span>
                   <a href="https://huggingface.co/tasks">task page</a>.
                 </span>
@@ -333,12 +333,12 @@ def generate(text):
               />
               <p>
                 Next is to connect three ML functions with Gradio UIs. You will
-                see here how simple it is to connect the codes and generate the
-                decent interface. By calling{" "}
+                see how simple it is to connect the codes and generate a decent
+                interface here by calling{" "}
                 <span className="highlight">gr.Series</span> function, we can
-                just connect the inputs and outputs of the ML functions like a
-                LEGO block. The task is as simple as returning the values in the
-                right formats.
+                connect the inputs and outputs of the ML functions like a LEGO
+                block. The task is as simple as returning the values in the
+                correct formats.
               </p>
               <CodeBlock
                 language="python"
@@ -359,9 +359,9 @@ demo = gr.Series(series_1, series_2, series_3)
 `}
               />
               <p>
-                After writing the code, I uploaded the code to the Space. Then
-                after a while, you will see find this amazing interface. The
-                full code for the project can be found{" "}
+                After writing the code, I uploaded the code to the Space. Then,
+                after a while, you will find this fantastic interface. The
+                complete code for the project can be found{" "}
                 <span>
                   <a href="https://github.com/mj-life-is-once/huggingface_musicgen">
                     here
@@ -400,15 +400,14 @@ demo = gr.Series(series_1, series_2, series_3)
             <TextBlock>
               <h1>6. Final Result</h1>
               <p>
-                I was not able to make the Space public due to the OpenAPI
-                request limits. However, I will leave the working screen
-                records, and the output music below.
+                I could not make the Space public due to the OpenAPI request
+                limits. However, I will leave the working screen records and the
+                output music below.
               </p>
               <YoutubeEmbed embedId="m9zf5A4vTBg" />
-              <h4>Music Generator with Melody(Public Space)</h4>
               <p>
-                I also included the link to the public Space that I put examples
-                prompts to the Facebook&apos;s MusicGen (with optional melody
+                I also included the link to the public Space where I put example
+                prompts to Facebook&apos;s MusicGen (with optional melody
                 input). Please Note that it will take around 2-3 minutes to
                 generate 5 seconds of music with the free-tier plan.
               </p>{" "}

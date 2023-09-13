@@ -35,3 +35,11 @@ $breakpoint-tablet: 768px;
     padding: 0 0.5rem;
   }
 }
+
+$breakpoint-mobile: 576px;
+@media (max-width: $breakpoint-mobile) {
+  .quote {
+    margin: 0.5rem 0;
+    padding: 0 0.5rem;
+  }
+}
