@@ -10,7 +10,7 @@ import HuggingLayout from "@/svg/ml/hugging_layout.svg";
 import Image from "next/image";
 import Link from "next/link";
 import IFrame from "@/components/_ui/IFrame";
-
+import MediaPlayer from "@/components/_ui/MediaPlayer";
 interface BlogData {
   [key: string]: any; // type for unknown keys.
 }
@@ -405,6 +405,11 @@ demo = gr.Series(series_1, series_2, series_3)
                 output music below.
               </p>
               <YoutubeEmbed embedId="m9zf5A4vTBg" />
+              <MediaPlayer
+                type="audio"
+                src="/media/huggingface/musicgen_out.wav"
+                label="Generated Music"
+              />
               <p>
                 I also included the link to the public Space where I put example
                 prompts to Facebook&apos;s MusicGen (with optional melody
