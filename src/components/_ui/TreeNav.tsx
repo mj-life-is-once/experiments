@@ -78,36 +78,39 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
 
     //console.log(link);
     const link = d3.select(linesRef.current!).selectAll("line").data(links);
-
     const node = d3.select(nodesRef.current!).selectAll("circle").data(nodes);
     const text = d3.select(nodesRef.current!).selectAll("text").data(nodes);
 
-    node
-      .on("click", (event: any, d: any) => {
-        if (!event.defaultPrevented) {
-          //console.log(d.children);
-          if (d.children) {
-            d._children = d.children;
-            d.children = null;
+    const callbackNode = node.call(drag(simulation) as any);
+    //let dragCallback = callbackNode.property("__onmousedown.drag")["_"];
+
+    node.on("click", (event: any, d: any) => {
+      if (!event.defaultPrevented) {
+        //console.log(d.children);
+        if (d.children) {
+          d._children = d.children;
+          d.children = null;
+        } else {
+          node.on("mousedown.drag", null);
+          if (d._children) {
+            d.children = d._children;
           } else {
-            if (d._children) {
-              d.children = d._children;
-            } else {
-              console.log("leaf node: ", d.data.path);
-              //navigate
-              if (allowedPosts.includes(d.data.path)) {
-                router.push(`/blog${d.data.path}`);
-              }
+            console.log("leaf node: ", d.data.path);
+            //navigate
+
+            if (allowedPosts.includes(d.data.path)) {
+              router.push(`/blog${d.data.path}`);
             }
-
-            d._children = null;
           }
-
-          setLinks(root.links());
-          setNodes(root.descendants());
+          node.on("mousedown.drag", drag(simulation) as any);
+          d._children = null;
         }
-      })
-      .call(drag(simulation) as any);
+
+        setLinks(root.links());
+        setNodes(root.descendants());
+      }
+    });
+    // .call(drag(simulation) as any);
 
     simulation.on("tick", () => {
       link
