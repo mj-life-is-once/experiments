@@ -11,3 +11,10 @@ $breakpoint-tablet: 768px;
     padding: 5rem 3rem;
   }
 }
+
+$breakpoint-mobile: 576px;
+@media (max-width: $breakpoint-mobile) {
+  .block {
+    padding: 3rem 2rem;
+  }
+}
