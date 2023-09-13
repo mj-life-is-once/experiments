@@ -400,9 +400,10 @@ demo = gr.Series(series_1, series_2, series_3)
             <TextBlock>
               <h1>6. Final Result</h1>
               <p>
-                I could not make the Space public due to the OpenAPI request
-                limits. However, I will leave the working screen records and the
-                output music below.
+                I was not able to make the Space public due to the OpenAPI
+                request limits. Nonetheless, I left the working screen records
+                and the output music below to get the flavour of the interface
+                that has been created.
               </p>
               <YoutubeEmbed embedId="m9zf5A4vTBg" />
               <MediaPlayer
