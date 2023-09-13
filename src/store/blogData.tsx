@@ -4,7 +4,6 @@ import TextBlock from "@/components/_ui/TextBlock";
 import ImageBlock from "@/components/_ui/ImageBlock";
 import Quote from "@/components/_ui/Quote";
 import MagentaSystem from "@/svg/ml/brain_system.svg";
-import HuggingSystem from "@/svg/ml/hugging_system.svg";
 import YoutubeEmbed from "@/components/_ui/YoutubeEmbed";
 import VMSystem from "@/svg/ml/vm_system.svg";
 import HuggingLayout from "@/svg/ml/hugging_layout.svg";
@@ -406,9 +405,6 @@ demo = gr.Series(series_1, series_2, series_3)
                 records, and the output music below.
               </p>
               <YoutubeEmbed embedId="m9zf5A4vTBg" />
-              <ImageBlock type="svg" caption="Fig2. Full System Flow">
-                <HuggingSystem />
-              </ImageBlock>
               <h4>Music Generator with Melody(Public Space)</h4>
               <p>
                 I also included the link to the public Space that I put examples
