@@ -14,7 +14,6 @@ const CodeBlock = (props: CodeProps) => {
         language={props.language}
         style={gradientDark}
         showLineNumbers
-        wrapLongLines
         showInlineLineNumbers
         wrapLines={true}
       >

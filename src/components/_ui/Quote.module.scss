@@ -27,3 +27,11 @@
     }
   }
 }
+
+$breakpoint-tablet: 768px;
+@media (max-width: $breakpoint-tablet) {
+  .quote {
+    margin: 2rem 0;
+    padding: 0 0.5rem;
+  }
+}
