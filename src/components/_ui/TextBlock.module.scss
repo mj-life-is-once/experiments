@@ -26,5 +26,19 @@ $breakpoint-mobile: 576px;
     h1 {
       line-height: 1.2;
     }
+
+    p {
+      font-size: 18px;
+      margin: 1.5rem 0;
+    }
+
+    ul {
+      font-size: 18px;
+      li {
+        margin: 0 2rem;
+        font-size: 18px;
+        /*list-style: none;*/
+      }
+    }
   }
 }
