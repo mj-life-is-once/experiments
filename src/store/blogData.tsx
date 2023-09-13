@@ -19,7 +19,7 @@ export const BLOGS: BlogData = {
   huggingface: {
     intro: {
       category: "Machine Learning",
-      title: <h1>Develop ML Webapp with Hugging Face APIS</h1>,
+      title: <h1>Develop ML Webapp with Hugging Face APIs</h1>,
       description: (
         <p>
           Through this experience, I explored the possibility of{" "}
@@ -332,9 +332,9 @@ def generate(text):
 `}
               />
               <p>
-                Next is to connect three ML functions with Gradio UIs. You will
-                see how simple it is to connect the codes and generate a decent
-                interface here by calling{" "}
+                Next step is to cascade three ML functions with Gradio UIs. You
+                will see how simple it is to connect the codes and generate a
+                decent interface here by calling{" "}
                 <span className="highlight">gr.Series</span> function, we can
                 connect the inputs and outputs of the ML functions like a LEGO
                 block. The task is as simple as returning the values in the
@@ -360,8 +360,8 @@ demo = gr.Series(series_1, series_2, series_3)
               />
               <p>
                 After writing the code, I uploaded the code to the Space. Then,
-                after a while, you will find this fantastic interface. The
-                complete code for the project can be found{" "}
+                after a while, you will find this fantastic interface. Please
+                find the complete code from{" "}
                 <span>
                   <a href="https://github.com/mj-life-is-once/huggingface_musicgen">
                     here
@@ -413,13 +413,18 @@ demo = gr.Series(series_1, series_2, series_3)
               <p>
                 I also included the link to the public Space where I put example
                 prompts to Facebook&apos;s MusicGen (with optional melody
-                input). Please Note that it will take around 2-3 minutes to
+                input). Please note that it will take around 2-3 minutes to
                 generate 5 seconds of music with the free-tier plan.
               </p>{" "}
               <IFrame
                 src="https://minjoolisacho87-musicgen-fb.hf.space"
                 title="Music Generator"
               />
+              <p>
+                On the very bottom of the embedded interface, there is{" "}
+                <span className="highlight">Use via API</span> button that you
+                can click to see the exposed API endpoints.
+              </p>
             </TextBlock>
           </>
         ),
@@ -443,7 +448,7 @@ demo = gr.Series(series_1, series_2, series_3)
         </p>
       ),
       backLink: { title: "Back to Experiments", href: "/" },
-      tags: ["GCP", "docker", "react"],
+      tags: ["GCP", "docker", "SwaggerUI", "Flask"],
     },
     contents: [
       {
@@ -683,13 +688,13 @@ volumes:
                       this link
                     </a>
                   </span>{" "}
-                  to listen to check the generated music{" "}
+                  to listen to the generated music pieces{" "}
                 </p>
               </Quote>
               <p>
                 However, music generation process is extremely slow - it took
-                around <span className="highlight"> 30 seconds</span>
-                to generate the 10 seconds of music, and it is due to the
+                around <span className="highlight"> 30 seconds</span> to
+                generate the 10 seconds of music, and it is due to the{" "}
                 <span className="highlight">
                   limited hardware specification
                 </span>{" "}
