@@ -24,6 +24,7 @@ $breakpoint-tablet: 768px;
 @media (max-width: $breakpoint-tablet) {
   .text {
     h1 {
+      font-size: 30px;
       line-height: 1.2;
     }
 
@@ -47,20 +48,16 @@ $breakpoint-mobile: 576px;
   .text {
     margin: 2rem 0;
     h1 {
-      font-size: 30px;
       line-height: 1.2;
     }
 
     p {
-      font-size: 17px;
       margin: 1.2rem 0;
     }
 
     ul {
-      font-size: 17px;
       li {
         margin: 0 1.2rem;
-        font-size: 17px;
       }
     }
   }
@@ -75,15 +72,15 @@ $breakpoint-small-mobile: 400px;
     }
 
     p {
-      font-size: 15px;
+      font-size: 17px;
       margin: 1rem 0;
     }
 
     ul {
-      font-size: 15px;
+      font-size: 17px;
       li {
         margin: 0 1rem;
-        font-size: 15px;
+        font-size: 17px;
         /*list-style: none;*/
       }
     }
