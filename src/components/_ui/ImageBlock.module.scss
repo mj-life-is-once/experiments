@@ -22,10 +22,12 @@
     height: 30%;
     rect {
       stroke: var(--highlight_color_1);
+      stroke-width: 2;
     }
+    /*
     path {
-      fill: white;
-    }
+      fill: white; 
+    }*/
   }
 }
 

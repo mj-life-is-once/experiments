@@ -12,9 +12,9 @@ const width = 1200;
 const height = 600;
 
 const rootDistance = 100;
-const mainDistance = 80;
-const subDistance = 50;
-const chargeStrength = -1900;
+const mainDistance = 90;
+const subDistance = 70;
+const chargeStrength = -2000;
 const linkStrength = 0.1;
 
 // source : https://observablehq.com/@d3/force-directed-tree?intent=fork

@@ -31,7 +31,9 @@ const Home = async () => {
           description={
             <p>
               This is (going to be) showcasing Minjoo&#x27;s various technical
-              experiments. Click on the nodes to read the post.
+              experiments. Click on the{" "}
+              <span style={{ fontWeight: "bold" }}>BLACK</span> nodes to read
+              the post.
             </p>
           }
           backLink={{ title: "Back to Home", href: "http://minjoocho.com" }}

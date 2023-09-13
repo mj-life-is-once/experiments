@@ -49,7 +49,7 @@ circle {
 }*/
 
 circle:hover {
-  fill: var(--highlight_color_2);
+  fill: var(--highlight_color_1);
 }
 
 button {
