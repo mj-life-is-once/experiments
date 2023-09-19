@@ -11,7 +11,7 @@
       ]
     },
     {
-      "name": "AR / VR / MR",
+      "name": "AR/VR/MR",
       "path": "/virtual",
       "children": [{ "name": "Playcanvas", "path": "/playcanvas" }]
     },
