@@ -18,7 +18,7 @@ const chargeStrength = -2000;
 const linkStrength = 0.1;
 
 // source : https://observablehq.com/@d3/force-directed-tree?intent=fork
-const allowedPosts = ["/huggingface", "/musicGeneration"];
+const allowedPosts = ["/huggingface", "/musicGeneration", "/scattered"];
 
 const TreeNav = ({ data }: { data: TreeNode }) => {
   const router = useRouter();
@@ -119,7 +119,7 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
       node.attr("cx", (d: any) => d.x).attr("cy", (d: any) => d.y);
       text.attr("x", (d: any) => d.x).attr("y", (d: any) => d.y);
     });
-  }, [drag, links, nodes, root]);
+  }, [drag, links, nodes, root, router]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -127,16 +127,13 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
         w: containerRef.current?.offsetWidth as number,
         h: containerRef.current?.offsetHeight as number,
       });
-
-      window.addEventListener("resize", handleResize);
-      handleResize();
-      return () => window.removeEventListener("resize", handleResize);
     };
+    // window.addEventListener("resize", handleResize);
+    // // handleResize();
+    // return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
-    //setDimension()
-
     update();
   }, [update]);
 
@@ -176,7 +173,7 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
               if (node.children) return "url(#highlight-gradient)";
               if (allowedPosts.includes(node.data.path)) {
                 //console.log("included");
-                return "#283230";
+                return "#1e1e1e";
               }
             };
 
@@ -191,6 +188,18 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
               if (node.children) return "#ffffff";
             };
 
+            // const words = node.data.name.split(/(?=[A-Z][a-z])|\s+/g);
+            // if (!words[words.length - 1]) words.pop();
+            // if (!words[0]) words.shift();
+
+            // const tspans = words.map((word: string, index: number) => {
+            //   return (
+            //     <tspan key={word} textAnchor="middle" dy={`${1.5 * index}rem`}>
+            //       {word}
+            //     </tspan>
+            //   );
+            // });
+
             return (
               <g key={`${node.data.name}_${index}`}>
                 <circle
@@ -202,6 +211,7 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
                 >
                   <title>{node.data.name}</title>
                 </circle>
+
                 <text
                   className={c.text}
                   textAnchor="middle"
