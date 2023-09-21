@@ -5,16 +5,14 @@ interface IFrameProps {
 }
 const IFrame = (props: IFrameProps) => {
   return (
-    <div
-      className={`${props.className ?? ""}`}
-      style={{ width: "100%", height: "100%" }}
-    >
+    <div className={`w-full h-full ${props.className ?? ""}`}>
       <iframe
+        className="border-0 overflow-scroll block w-full overflow-y-auto overflow-x-hidden"
         src={props.src}
         title={props.title}
         width="100%"
         height="800px"
-        style={{ border: "none", overflow: "scroll" }}
+        allow="fullscreen"
       />
     </div>
   );

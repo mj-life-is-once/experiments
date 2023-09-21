@@ -726,27 +726,6 @@ volumes:
     ],
   },
   scattered: {
-    intro: {
-      category: "Data Visualisation",
-      title: <h1>D3.JS Scattered plot</h1>,
-      description: (
-        <p>
-          I explored different apprach to draw D3.JS scattered plot depending on
-          the number datapoints
-        </p>
-      ),
-      backLink: { title: "Back to Experiments", href: "/" },
-      tags: ["Typescript", "D3JS", "Data Visualisation"],
-    },
-    contents: [
-      {
-        content: (
-          <IFrame
-            src="https://scatter-plot-pi.vercel.app/canvas"
-            title="Canvas-plot"
-          />
-        ),
-      },
-    ],
+    external: "https://scatter-plot-pi.vercel.app/",
   },
 };

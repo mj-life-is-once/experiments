@@ -39,7 +39,6 @@ const Home = async () => {
           backLink={{ title: "Back to Home", href: "http://minjoocho.com" }}
         />
       </div>
-
       <TreeNav data={promiseData}></TreeNav>
     </main>
   );
