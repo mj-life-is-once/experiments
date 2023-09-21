@@ -6,7 +6,11 @@
       "name": "Data Visualisation",
       "path": "/dataviz",
       "children": [
-        { "name": "Scattered Charts", "path": "/scattered" },
+        {
+          "name": "Scattered Plots",
+          "path": "/scattered",
+          "external": "https://scatter-plot-pi.vercel.app/"
+        },
         { "name": "Force Simulation", "path": "/force" }
       ]
     },

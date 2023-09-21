@@ -4,7 +4,7 @@ import Intro from "@/components/_ui/Intro";
 import { BLOGS } from "@/store/blogData";
 import c from "./page.module.scss";
 import ContentBlock from "@/components/_ui/Content";
-import { Content } from "@/type/types";
+import { useCallback } from "react";
 
 const Blogs = ({ params }: { params: { id: string } }) => {
   return (

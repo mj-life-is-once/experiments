@@ -92,11 +92,17 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
             if (d._children) {
               d.children = d._children;
             } else {
-              // console.log("leaf node: ", d.data.path);
-              //navigate
-              // node.on('')
-              if (allowedPosts.includes(d.data.path)) {
+              if (
+                allowedPosts.includes(d.data.path) &&
+                !d.data.hasOwnProperty("external")
+              ) {
                 router.push(`/blog${d.data.path}`);
+              }
+              if (
+                allowedPosts.includes(d.data.path) &&
+                d.data.hasOwnProperty("external")
+              ) {
+                window.open(d.data.external, "_parent");
               }
             }
 
