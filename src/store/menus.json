@@ -8,8 +8,7 @@
       "children": [
         {
           "name": "Scattered Plots",
-          "path": "/scattered",
-          "external": "https://scatter-plot-pi.vercel.app/"
+          "path": "/scattered"
         },
         { "name": "Force Simulation", "path": "/force" }
       ]

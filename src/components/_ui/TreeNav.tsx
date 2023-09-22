@@ -18,7 +18,7 @@ const chargeStrength = -2000;
 const linkStrength = 0.1;
 
 // source : https://observablehq.com/@d3/force-directed-tree?intent=fork
-const allowedPosts = ["/huggingface", "/musicGeneration", "/scattered"];
+const allowedPosts = ["/huggingface", "/musicGeneration"];
 
 const TreeNav = ({ data }: { data: TreeNode }) => {
   const router = useRouter();

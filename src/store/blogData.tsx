@@ -725,7 +725,4 @@ volumes:
       },
     ],
   },
-  scattered: {
-    external: "https://scatter-plot-pi.vercel.app/",
-  },
 };
