@@ -209,6 +209,11 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
             return (
               <g key={`${node.data.name}_${index}`}>
                 <circle
+                  // style={{
+                  //   cursor: `${
+                  //     allowedPosts.includes(node.data.path) ? "pointer" : "none"
+                  //   }`,
+                  // }}
                   fill={fillCircleColor(node)}
                   stroke={strokeCircleColor(node)}
                   r={radius(node)}

@@ -40,6 +40,11 @@
 
 .button {
   pointer-events: all;
+  color: black;
+}
+
+.button:active {
+  cursor: progress;
 }
 
 @media screen and (max-width: 540px) {

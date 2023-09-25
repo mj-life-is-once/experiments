@@ -53,6 +53,12 @@ a {
 
 circle:hover {
   fill: var(--highlight_color_1);
+  cursor: pointer;
+}
+
+circle:active {
+  fill: var(--highlight_color_2);
+  cursor: progress;
 }
 
 button {
