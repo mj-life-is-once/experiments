@@ -43,6 +43,10 @@
   color: black;
 }
 
+.button:active {
+  cursor: progress;
+}
+
 @media screen and (max-width: 540px) {
   .title {
     font-size: 1.8em;
