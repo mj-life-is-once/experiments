@@ -852,7 +852,8 @@ volumes:
                   </a>
                 </span>
               </p>
-              <h2>4.1. D3 with Canvas</h2>
+              <IFrame title="demo" src="https://scatter-plot-pi.vercel.app/" />
+              <h2 className="text-2xl py-5 font-bold">4.1. D3 with Canvas</h2>
               <p></p>
               <Quote>
                 <h4>Resources</h4>
@@ -865,7 +866,9 @@ volumes:
                   </span>
                 </p>
               </Quote>
-              <h2>4.2. D3 with WebGL(D3FC)</h2>
+              <h2 className="text-2xl py-5 font-bold">
+                4.2. D3 with WebGL(D3FC)
+              </h2>
               <p>
                 As stated above, please note that the example is a recreating of
                 Colin Eberhardt in React + Typescript.

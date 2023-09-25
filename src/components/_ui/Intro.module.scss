@@ -5,9 +5,13 @@
 
 .title {
   margin: 0.5rem 0;
-  font-size: 2em;
   line-height: 1.2;
   max-width: 30rem;
+
+  h1 {
+    font-size: 3rem;
+    font-weight: bold;
+  }
 
   .wip {
     color: var(--highlight_color_2);
