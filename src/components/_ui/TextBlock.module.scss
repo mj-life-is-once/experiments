@@ -1,3 +1,5 @@
+@import "../../app/breakpoints.module.scss";
+
 .text {
   h1 {
     margin: 2rem 2rem 0 0;
@@ -20,8 +22,7 @@
   }
 }
 
-$breakpoint-tablet: 768px;
-@media (max-width: $breakpoint-tablet) {
+@include breakpoint-tablet {
   .text {
     h1 {
       font-size: 30px;
@@ -43,8 +44,7 @@ $breakpoint-tablet: 768px;
   }
 }
 
-$breakpoint-mobile: 576px;
-@media (max-width: $breakpoint-mobile) {
+@include breakpoint-mobile {
   .text {
     margin: 2rem 0;
     h1 {
@@ -63,8 +63,7 @@ $breakpoint-mobile: 576px;
   }
 }
 
-$breakpoint-small-mobile: 400px;
-@media (max-width: $breakpoint-small-mobile) {
+@include breakpoint-small-mobile {
   .text {
     h1 {
       font-size: 28px;

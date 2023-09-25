@@ -1,3 +1,5 @@
+@import "../../app/breakpoints.module.scss";
+
 .block {
   padding: 5rem;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -5,15 +7,13 @@
   background-color: rgb(243, 245, 239);
 }
 
-$breakpoint-tablet: 768px;
-@media (max-width: $breakpoint-tablet) {
+@include breakpoint-tablet {
   .block {
     padding: 5rem 3rem;
   }
 }
 
-$breakpoint-mobile: 576px;
-@media (max-width: $breakpoint-mobile) {
+@include breakpoint-mobile {
   .block {
     padding: 3rem 2rem;
   }

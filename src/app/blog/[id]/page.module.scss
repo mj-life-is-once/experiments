@@ -1,39 +1,17 @@
-/*@use "@styles/mixins";*/
+@import "../../breakpoints.module.scss";
 
 .blog {
   margin: auto;
   width: 80%;
   height: 100%;
-
-  /*
-  @include mixins.tablet {
-    margin: auto;
-    width: 90%;
-    height: 100%;
-  }
-
-  @include mixins.mobile {
-    width: 100%;
-    height: 100%;
-  }*/
 }
-/*
-.body {
-  @include mixins.tablet {
-    padding: 0 0;
-  }
-  @include mixins.mobile {
-    padding: 0 0;
-  }
-}
-*/
+
 .intro {
   position: static;
   padding: 4rem 2rem;
 }
 
-$breakpoint-tablet: 768px;
-@media (max-width: $breakpoint-tablet) {
+@include breakpoint-tablet {
   .blog {
     margin: auto;
     width: 90%;
@@ -44,8 +22,8 @@ $breakpoint-tablet: 768px;
     padding: 0 0;
   }
 }
-$breakpoint-mobile: 576px;
-@media (max-width: $breakpoint-mobile) {
+
+@include breakpoint-mobile {
   .blog {
     width: 100%;
     height: 100%;
