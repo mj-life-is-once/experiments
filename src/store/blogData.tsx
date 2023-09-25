@@ -725,4 +725,167 @@ volumes:
       },
     ],
   },
+  scatterplots: {
+    intro: {
+      category: "Data Visualisation",
+      title: <h1>Scatter plots with D3.js and D3FC.js</h1>,
+      description: (
+        <p>
+          I explored various way of drawing scattered plots in D3.js depending
+          on the size of datapoints.
+        </p>
+      ),
+      backLink: { title: "Back to Experiments", href: "/" },
+      tags: ["D3.js", "webgl", "Typescript", "React.js"],
+    },
+    contents: [
+      {
+        content: (
+          <>
+            <TextBlock>
+              <h1>1. What is D3.js</h1>
+              <p>
+                D3.js is an widely-used open-source javascript library made for
+                data-visualisation. It provides a low-level toolbox that
+                developers can easily combine together to create a custom
+                data-visualisation. There are lots of{" "}
+                <span>
+                  <a href="https://github.com/xychelsea/magenta-docker">
+                    community-provided examples
+                  </a>
+                </span>{" "}
+                available in Observable, and it was mostly written in vanila
+                javascript that is not easily translable in React with ease.
+              </p>
+              <Quote>
+                <h4>Resources</h4>
+                <p>
+                  <span>
+                    1.{" "}
+                    <a href="https://d3js.org/what-is-d3">
+                      D3.js official documentation
+                    </a>
+                  </span>
+                </p>
+                <p>
+                  <span>
+                    2.{" "}
+                    <a href="https://observablehq.com/@d3/gallery">
+                      D3 examples in Observable
+                    </a>
+                  </span>
+                </p>
+              </Quote>
+              <h1>2. React with D3.js</h1>
+              <p>
+                Combining D3.js with React has been known as the tricky job due
+                to the different rendering scheme that both library provide.{" "}
+                After reading{" "}
+                <span>
+                  <a href="https://github.com/xychelsea/magenta-docker">
+                    Amelia Wattenberger's post
+                  </a>
+                </span>{" "}
+                about the tips to Reactise D3.js, I decided to implement a
+                scattered plot in React (with NextJS13) by my own to face and
+                understand the difficulty through the actual experience.
+              </p>
+
+              <h1>3. Different number of data, different strategy</h1>
+              <p>
+                Whilst implementing scatter plots, I realised there are
+                different technical approaches taken to visualise data with
+                different number of data points. D3 charts utilises SVG, a
+                retained mode graphical model that is easier to use but
+                performance limited, to render the data with upto 10k data
+                points.
+              </p>
+              <p>
+                However, as the number of data increases upto 10k, it is
+                recommended to render charts using Canvas, which is an immediate
+                mode graphical model.
+              </p>
+              <p>
+                {" "}
+                When the number of data point increases upto 1M, it is better to
+                use WebGL, which provides Javascript API to use GPU-accelerated
+                graphics. Thankfully, I found{" "}
+                <span>
+                  {" "}
+                  <a href="https://blog.scottlogic.com/2020/05/01/rendering-one-million-points-with-d3.html">
+                    this great example by Colin Eberhardt
+                  </a>
+                </span>{" "}
+                that showcases how to integrate{" "}
+                <span>
+                  <a href="https://d3fc.io/">D3FC library</a>
+                </span>{" "}
+                - a library that enables chart creation with D3 using WebGL.
+              </p>
+              <Quote>
+                <h4>Resources</h4>
+                <p>
+                  <span>
+                    1.{" "}
+                    <a href="https://blog.scottlogic.com/2020/05/01/rendering-one-million-points-with-d3.html">
+                      Rendering One Million Datapoints with D3 and WebGL
+                    </a>
+                  </span>
+                </p>
+              </Quote>
+            </TextBlock>
+          </>
+        ),
+      },
+      {
+        content: (
+          <>
+            <TextBlock>
+              <h1>4. Implementation</h1>
+              <p>
+                I created two example charts that manifests above two strategies
+                when the number of data points exceeds 1K. For each chart, I
+                made the chart zoomable and selectable by adopting{" "}
+                <span>
+                  <a href="https://observablehq.com/@d3/quadtree-findincircle?collection=@d3/d3-quadtree">
+                    D3 Quadtree search.
+                  </a>
+                </span>
+              </p>
+              <h2>4.1. D3 with Canvas</h2>
+              <p></p>
+              <Quote>
+                <h4>Resources</h4>
+                <p>
+                  <span>
+                    1.{" "}
+                    <a href="https://d3js.org/what-is-d3">
+                      D3.js official documentation
+                    </a>
+                  </span>
+                </p>
+              </Quote>
+              <h2>4.2. D3 with WebGL(D3FC)</h2>
+              <p>
+                As stated above, please note that the example is a recreating of
+                Colin Eberhardt in React + Typescript.
+              </p>
+              <p>
+                The dataset used in this example is{" "}
+                <span>
+                  <a href="http://creatingdata.us/datasets/hathi-features/">
+                    Hathi Trust Library Dataset
+                  </a>
+                </span>{" "}
+                created by{" "}
+                <span>
+                  <a href="https://benschmidt.org/">Ben Schmidt.</a>
+                </span>
+              </p>
+            </TextBlock>
+          </>
+        ),
+      },
+    ],
+  },
 };
