@@ -7,10 +7,12 @@ import MagentaSystem from "@/svg/ml/brain_system.svg";
 import YoutubeEmbed from "@/components/_ui/YoutubeEmbed";
 import VMSystem from "@/svg/ml/vm_system.svg";
 import HuggingLayout from "@/svg/ml/hugging_layout.svg";
+import D3Canvas from "@/svg/data_viz/D3_canvas.svg";
 import Image from "next/image";
 import Link from "next/link";
 import IFrame from "@/components/_ui/IFrame";
 import MediaPlayer from "@/components/_ui/MediaPlayer";
+import { Button } from "@/components/_ui/Button";
 interface BlogData {
   [key: string]: any; // type for unknown keys.
 }
@@ -420,6 +422,7 @@ demo = gr.Series(series_1, series_2, series_3)
               <IFrame
                 src="https://minjoolisacho87-musicgen-fb.hf.space"
                 title="Music Generator"
+                showButton={true}
               />
               <p>
                 On the very bottom of the embedded interface, there is{" "}
@@ -745,17 +748,17 @@ volumes:
             <TextBlock>
               <h1>1. What is D3.js</h1>
               <p>
-                D3.js is an widely-used open-source javascript library made for
-                data-visualisation. It provides a low-level toolbox that
-                developers can easily combine together to create a custom
-                data-visualisation. There are lots of{" "}
+                D3.js is a widely-used open-source javascript library made for
+                data visualisation. It provides a low-level toolbox developers
+                can easily combine to create a custom data visualisation. There
+                are lots of{" "}
                 <span>
                   <a href="https://github.com/xychelsea/magenta-docker">
                     community-provided examples
                   </a>
                 </span>{" "}
-                available in Observable, and it was mostly written in vanila
-                javascript that is not easily translable in React with ease.
+                available in Observable, and it was primarily written in Vanila
+                javascript and is not easily translatable in React with ease.
               </p>
               <Quote>
                 <h4>Resources</h4>
@@ -778,27 +781,36 @@ volumes:
               </Quote>
               <h1>2. React with D3.js</h1>
               <p>
-                Combining D3.js with React has been known as the tricky job due
-                to the different rendering scheme that both library provide.{" "}
-                After reading{" "}
+                Combining D3.js with React has been a tricky job due to the
+                different rendering schemes both libraries provide. After
+                reading{" "}
                 <span>
-                  <a href="https://github.com/xychelsea/magenta-docker">
+                  <a href="https://2019.wattenberger.com/blog/react-and-d3">
                     Amelia Wattenberger's post
                   </a>
                 </span>{" "}
                 about the tips to Reactise D3.js, I decided to implement a
-                scattered plot in React (with NextJS13) by my own to face and
+                scattered plot in React (with NextJS13) on my own to face and
                 understand the difficulty through the actual experience.
               </p>
-
+              <Quote>
+                <h4>More Read</h4>
+                <p>
+                  <span>
+                    1.{" "}
+                    <a href="https://2019.wattenberger.com/blog/react-and-d3">
+                      React and D3 by Amelia Watterberger
+                    </a>
+                  </span>
+                </p>
+              </Quote>
               <h1>3. Different number of data, different strategy</h1>
               <p>
-                Whilst implementing scatter plots, I realised there are
-                different technical approaches taken to visualise data with
-                different number of data points. D3 charts utilises SVG, a
-                retained mode graphical model that is easier to use but
-                performance limited, to render the data with upto 10k data
-                points.
+                While implementing scatter plots, I realised different technical
+                approaches are taken to visualise data with varying numbers of
+                data points. D3 charts utilise SVG, a retained mode graphical
+                model that is easier but performance-limited, to render the data
+                with up to 10k data points.
               </p>
               <p>
                 However, as the number of data increases upto 10k, it is
@@ -806,14 +818,15 @@ volumes:
                 mode graphical model.
               </p>
               <p>
-                {" "}
-                When the number of data point increases upto 1M, it is better to
-                use WebGL, which provides Javascript API to use GPU-accelerated
-                graphics. Thankfully, I found{" "}
+                However, as the number of data increases to 10k, it is
+                recommended to render charts using Canvas, an immediate-mode
+                graphical model. When the number of data points increases to 1M,
+                it is better to use WebGL, which provides Javascript API to use
+                GPU-accelerated graphics. Thankfully, I found{" "}
                 <span>
                   {" "}
                   <a href="https://blog.scottlogic.com/2020/05/01/rendering-one-million-points-with-d3.html">
-                    this great example by Colin Eberhardt
+                    this great blog post by Colin Eberhardt
                   </a>
                 </span>{" "}
                 that showcases how to integrate{" "}
@@ -852,27 +865,91 @@ volumes:
                   </a>
                 </span>
               </p>
-              <IFrame title="demo" src="https://scatter-plot-pi.vercel.app/" />
-              <h2 className="text-2xl py-5 font-bold">4.1. D3 with Canvas</h2>
-              <p></p>
+              <IFrame
+                className="bg-white"
+                src="https://observablehq.com/embed/@d3/animated-quadtree?cells=chart"
+                title="D3 quadtree"
+                showButton={false}
+              />
+              <p>
+                You may visit the full demo page or get the full code from the
+                links below.
+              </p>
+              <Button
+                className="mr-5 bg-yellow-400 shadow-md"
+                onClick={() => {
+                  window.open("https://scatter-plot-pi.vercel.app/", "_parent");
+                }}
+              >
+                Visit Demo Page
+              </Button>
+              <Button
+                className="bg-yellow-400 shadow-md mb-10"
+                onClick={() => {
+                  window.open("https://scatter-plot-pi.vercel.app/", "_parent");
+                }}
+              >
+                Full Github Code
+              </Button>
+              <h2 className="text-2xl py-5 font-bold">
+                4.1. D3 with Canvas (~10k datapoints)
+              </h2>
+              <p>
+                To implement the example, I used the conventional SVG to draw X
+                and Y domains and overlayed two canvases on top. One canvas is
+                to remove the datapoints, and another one to highlight the
+                selected datapoints.{" "}
+              </p>
+              <ImageBlock type="svg" caption="Fig1. D3 with Canvas">
+                <D3Canvas style={{ height: "600px" }} />
+              </ImageBlock>
+              <p>
+                When integrating D3 with React, the easies route you can take is
+                to implement all the code in a single useEffect() hook.
+              </p>
+              <p>
+                In her blog, Amelia Wattenberger suggests more React-friendly
+                way of refactoring D3 code in her{" "}
+                <span>
+                  <a href="https://2019.wattenberger.com/blog/react-and-d3">
+                    blog post.
+                  </a>
+                </span>
+              </p>
+              <p>
+                It is fully upto you to take your preferred strategy depending
+                on the circumstances you're in, but I tried my best to reduce
+                the code in useEffect() by using other hooks(useRef, useMemo,
+                useCallback)
+              </p>
+
+              <IFrame
+                title="canvas"
+                src="https://scatter-plot-pi.vercel.app/canvas"
+                showButton={true}
+              />
               <Quote>
-                <h4>Resources</h4>
+                <h4>More Read</h4>
                 <p>
                   <span>
                     1.{" "}
-                    <a href="https://d3js.org/what-is-d3">
-                      D3.js official documentation
+                    <a href="https://blog.griddynamics.com/using-d3-js-with-react-js-an-8-step-comprehensive-manual/">
+                      Using D3.js with React: An 8 step comprehensive manual
+                    </a>
+                  </span>
+                </p>
+                <p>
+                  <span>
+                    2.{" "}
+                    <a href="https://2019.wattenberger.com/blog/react-and-d3">
+                      React and D3 by Amelia Wattenberger
                     </a>
                   </span>
                 </p>
               </Quote>
-              <h2 className="text-2xl py-5 font-bold">
-                4.2. D3 with WebGL(D3FC)
+              <h2 className="text-2xl pt-5 font-bold">
+                4.2. D3FC with D3 (~1M datapoints)
               </h2>
-              <p>
-                As stated above, please note that the example is a recreating of
-                Colin Eberhardt in React + Typescript.
-              </p>
               <p>
                 The dataset used in this example is{" "}
                 <span>
@@ -880,11 +957,108 @@ volumes:
                     Hathi Trust Library Dataset
                   </a>
                 </span>{" "}
-                created by{" "}
+                created by Ben Schmidt, and it is the collection of digital
+                library data, which includes the published year, language and
+                author information.
+              </p>
+              <p>
+                The data is exposed at the endpoint
+                <span className="highlight">/data.tsv </span> in tsv format and
+                streamed by a web worker and you can find the full worker code I
+                wrote from{" "}
                 <span>
-                  <a href="https://benschmidt.org/">Ben Schmidt.</a>
+                  <a href="https://github.com/mj-life-is-once/scatter-plot/blob/main/src/app/helper/streamingTSVParser.ts">
+                    here.
+                  </a>
                 </span>
               </p>
+              <p>
+                The loaded data is saved as a state variable in React (defined
+                as "bigData" state in the code), and is bound with the quadTree
+                object and d3 annotation object(data label to show when hovered)
+                to be rendered in the WebGL canvas.
+              </p>
+              <p>
+                Please note again that the example is a reimplementation of{" "}
+                <span>
+                  <a href="https://colineberhardt.github.io/d3fc-webgl-hathi-explorer/">
+                    Colin Eberhardt's example
+                  </a>
+                </span>{" "}
+                in React + Typescript.
+              </p>
+              <IFrame
+                title="webgl"
+                src="https://scatter-plot-pi.vercel.app/webgl"
+                showButton={true}
+              />
+            </TextBlock>
+            <Quote>
+              <h4>Resources</h4>
+              <p>
+                <span>
+                  1.{" "}
+                  <a href="https://d3-annotation.susielu.com/">
+                    D3 annotation library by Susie Lu
+                  </a>
+                </span>
+              </p>
+            </Quote>
+          </>
+        ),
+      },
+      {
+        content: (
+          <>
+            <TextBlock>
+              <h1>5. Key Takeaway</h1>
+              <p>
+                When integrating D3 with React, I faced several difficulties and
+                I wrote this down so that people reading this blog won't make
+                similar mistakes.
+              </p>
+              <ul>
+                <li>
+                  <h4 className="text-xl font-bold">
+                    1. Make the best use of useRef() hook
+                  </h4>
+                  <p>
+                    It would help if you had to make the best use of useRef()
+                    hook and try to reference the DOM when the first useEffect()
+                    is called.
+                  </p>
+                </li>
+                <li>
+                  <h4 className="text-xl font-bold">
+                    2. Be aware of React's hook lifecycle.
+                  </h4>
+                  <p>
+                    To reduce the repetitive redefinition of the variables or
+                    functions, I used lots of useMemo() or useCallback() hook.
+                    However, it sometimes causes errors caused by the different
+                    order the hooks are called in React's lifecycle.
+                  </p>
+                  <ImageBlock type="img" caption="Fig3. React Lifecycle">
+                    <Image
+                      src="https://raw.githubusercontent.com/Wavez/react-hooks-lifecycle/master/screenshot.jpg"
+                      alt="React lifecycle"
+                      width={800}
+                      height={600}
+                    />
+                  </ImageBlock>
+                </li>
+              </ul>
+              <Quote>
+                <h4>Resources</h4>
+                <p>
+                  <span>
+                    1.{" "}
+                    <a href="https://github.com/Wavez/react-hooks-lifecycle">
+                      React Hooks Lifecycle Diagram
+                    </a>
+                  </span>
+                </p>
+              </Quote>
             </TextBlock>
           </>
         ),
