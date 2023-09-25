@@ -2,7 +2,7 @@
 import { ReactNode, useMemo } from "react";
 import c from "./Intro.module.scss";
 import { orator } from "@/styles/fonts";
-import IosShareOutlinedIcon from "@mui/icons-material/IosShareOutlined";
+// import IosShareOutlinedIcon from "@mui/icons-material/IosShareOutlined";
 
 interface IntroProps {
   title: ReactNode;

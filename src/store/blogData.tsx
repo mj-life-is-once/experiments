@@ -453,7 +453,7 @@ demo = gr.Series(series_1, series_2, series_3)
       ),
       backLink: { title: "Back to Experiments", href: "/" },
       tags: ["GCP", "docker", "SwaggerUI", "Flask"],
-      postedTime: "2023-09-20",
+      postedTime: "2023-09-15",
     },
     contents: [
       {
