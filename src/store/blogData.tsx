@@ -7,7 +7,7 @@ import MagentaSystem from "@/svg/ml/brain_system.svg";
 import YoutubeEmbed from "@/components/_ui/YoutubeEmbed";
 import VMSystem from "@/svg/ml/vm_system.svg";
 import HuggingLayout from "@/svg/ml/hugging_layout.svg";
-import D3Canvas from "@/svg/data_viz/D3_canvas.svg";
+import D3Canvas from "@/svg/data_viz/d3_canvas.svg";
 import Image from "next/image";
 import Link from "next/link";
 import IFrame from "@/components/_ui/IFrame";
