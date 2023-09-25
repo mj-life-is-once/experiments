@@ -24,16 +24,16 @@ const Home = async () => {
         <Intro
           title={
             <h1>
-              Minjoo&#x27;s Experiment
+              Minjoo&#x27;s Experiments
               <div style={{ color: "#ffbf00" }}>(WIP)</div>
             </h1>
           }
           description={
             <p>
-              This is (going to be) showcasing Minjoo&#x27;s various technical
-              experiments. Click on the{" "}
-              <span style={{ fontWeight: "bold" }}>BLACK</span> nodes to read
-              the post.
+              This page showcases Minjoo&#x27;s various technical experiments
+              and thoughts. Click on the{" "}
+              <span className="font-bold bg-black text-white">BLACK NODES</span>{" "}
+              to read the post.
             </p>
           }
           backLink={{ title: "Back to Home", href: "http://minjoocho.com" }}
