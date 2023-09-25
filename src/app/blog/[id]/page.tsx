@@ -4,7 +4,6 @@ import Intro from "@/components/_ui/Intro";
 import { BLOGS } from "@/store/blogData";
 import c from "./page.module.scss";
 import ContentBlock from "@/components/_ui/Content";
-import { useCallback } from "react";
 
 const Blogs = ({ params }: { params: { id: string } }) => {
   return (
@@ -22,6 +21,8 @@ const Blogs = ({ params }: { params: { id: string } }) => {
             description={BLOGS[params.id].intro.description}
             backLink={BLOGS[params.id].intro.backLink}
             tags={BLOGS[params.id].intro.tags}
+            postInfo={true}
+            postedTime={BLOGS[params.id].intro.postedTime}
           />
           <div className={c.body}>
             <ContentBlock contents={BLOGS[params.id].contents} />
