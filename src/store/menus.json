@@ -8,18 +8,17 @@
       "children": [
         {
           "name": "Scattered Plots",
-          "path": "/scattered"
-        },
-        { "name": "Force Simulation", "path": "/force" }
+          "path": "/scatterplots"
+        }
       ]
     },
     {
-      "name": "AR/VR/MR",
+      "name": "AR & VR & MR",
       "path": "/virtual",
       "children": [{ "name": "Playcanvas", "path": "/playcanvas" }]
     },
     {
-      "name": "Machine Learning",
+      "name": "AI & ML",
       "path": "/ml",
       "children": [
         {
