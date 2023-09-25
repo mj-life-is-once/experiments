@@ -29,9 +29,9 @@ export const BLOGS: BlogData = {
           hosting multiple ML engines to create multimodal experience.
         </p>
       ),
-
       backLink: { title: "Back to Experiments", href: "/" },
       tags: ["huggingface", "python", "transformer", "gradio"],
+      postedTime: "2023-09-18",
     },
     contents: [
       {
@@ -453,6 +453,7 @@ demo = gr.Series(series_1, series_2, series_3)
       ),
       backLink: { title: "Back to Experiments", href: "/" },
       tags: ["GCP", "docker", "SwaggerUI", "Flask"],
+      postedTime: "2023-09-20",
     },
     contents: [
       {
@@ -740,6 +741,7 @@ volumes:
       ),
       backLink: { title: "Back to Experiments", href: "/" },
       tags: ["D3.js", "webgl", "Typescript", "React.js"],
+      postedTime: "2023-09-25",
     },
     contents: [
       {

@@ -1,6 +1,7 @@
 .intro {
   padding-top: 2rem;
   padding-left: 2rem;
+  backdrop-filter: blur(3px);
 }
 
 .title {
@@ -45,6 +46,26 @@
 
 .button:active {
   cursor: progress;
+}
+
+.postInfo {
+  margin: 1rem 0;
+  padding: 1rem 0;
+  border-top: 1px solid #9e9e9e;
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+  .time {
+    color: "#9e9e9e";
+    margin-left: 1rem;
+  }
+
+  .share {
+    margin-right: 1rem;
+  }
 }
 
 @media screen and (max-width: 540px) {
