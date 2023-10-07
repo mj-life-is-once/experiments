@@ -4,6 +4,7 @@ import Intro from "@/components/_ui/Intro";
 import { BLOGS } from "@/store/blogData";
 import c from "./page.module.scss";
 import ContentBlock from "@/components/_ui/Content";
+import { Footer } from "@/components/_ui/Footer";
 
 const Blogs = ({ params }: { params: { id: string } }) => {
   return (
@@ -36,6 +37,7 @@ const Blogs = ({ params }: { params: { id: string } }) => {
           backLink={{ title: "Back to Experiments", href: "/" }}
         />
       )}
+      <Footer />
     </div>
   );
 };

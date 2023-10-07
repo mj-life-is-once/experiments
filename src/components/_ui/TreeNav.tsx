@@ -18,7 +18,12 @@ const chargeStrength = -2000;
 const linkStrength = 0.1;
 
 // source : https://observablehq.com/@d3/force-directed-tree?intent=fork
-const allowedPosts = ["/huggingface", "/musicGeneration", "/scatterplots"];
+const allowedPosts = [
+  "/huggingface",
+  "/musicGeneration",
+  "/scatterplots",
+  "/nextMqtt",
+];
 
 const TreeNav = ({ data }: { data: TreeNode }) => {
   const router = useRouter();
@@ -134,9 +139,6 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
         h: containerRef.current?.offsetHeight as number,
       });
     };
-    // window.addEventListener("resize", handleResize);
-    // // handleResize();
-    // return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
@@ -194,26 +196,9 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
               if (node.children) return "#ffffff";
             };
 
-            // const words = node.data.name.split(/(?=[A-Z][a-z])|\s+/g);
-            // if (!words[words.length - 1]) words.pop();
-            // if (!words[0]) words.shift();
-
-            // const tspans = words.map((word: string, index: number) => {
-            //   return (
-            //     <tspan key={word} textAnchor="middle" dy={`${1.5 * index}rem`}>
-            //       {word}
-            //     </tspan>
-            //   );
-            // });
-
             return (
               <g key={`${node.data.name}_${index}`}>
                 <circle
-                  // style={{
-                  //   cursor: `${
-                  //     allowedPosts.includes(node.data.path) ? "pointer" : "none"
-                  //   }`,
-                  // }}
                   fill={fillCircleColor(node)}
                   stroke={strokeCircleColor(node)}
                   r={radius(node)}
