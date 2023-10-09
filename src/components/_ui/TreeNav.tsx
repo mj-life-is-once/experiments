@@ -139,6 +139,9 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
         h: containerRef.current?.offsetHeight as number,
       });
     };
+    // window.addEventListener("resize", handleResize);
+    // // handleResize();
+    // return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {

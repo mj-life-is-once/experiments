@@ -13,6 +13,10 @@ import Link from "next/link";
 import IFrame from "@/components/_ui/IFrame";
 import MediaPlayer from "@/components/_ui/MediaPlayer";
 import { Button } from "@/components/_ui/Button";
+import {
+  CollapsibleItem,
+  CollapsibleList,
+} from "@/components/_ui/CollapsibleList";
 interface BlogData {
   [key: string]: any; // type for unknown keys.
 }
@@ -1114,45 +1118,33 @@ volumes:
                 Out of various reasons that makes MQTT so attractive to IoT
                 development, I would like to introduce few of them.
               </p>
-              <div className="flex lg:flex-row md:flex-col justify-start gap-10 w-full h-full flex-wrap">
-                <div className="lg: max-w-[40%] md: max-w-[80%]  max-h-[500px] bg-slate-900 text-neutral-300 p-10 rounded-lg">
-                  <h2 className="text-xl font-bold mb-3">
-                    Lightweight and efficient
-                  </h2>
-                  <span className="text-md">
+              <CollapsibleList>
+                <CollapsibleItem title="Lightweight and efficient">
+                  <div className="pb-3 text-md">
                     MQTT clients are very small, require minimal resources so
                     can be used on small microcontrollers.
-                  </span>
-                </div>
-                <div className="lg: max-w-[40%] md: max-w-[80%] bg-slate-900 text-neutral-300 p-10 rounded-lg">
-                  <h2 className="text-xl font-bold mb-3">
-                    2. Bi-directional communications
-                  </h2>
-                  <span className="text-md">
+                  </div>
+                </CollapsibleItem>
+                <CollapsibleItem title="Bi-directional communications">
+                  <div className="pb-3 text-md">
                     MQTT allows for messaging between device to cloud and cloud
                     to device. This makes for easy broadcasting messages to
                     groups of things.
-                  </span>
-                </div>
-                <div className="lg: max-w-[40%] md: max-w-[80%]  bg-slate-900 text-neutral-300 p-10 rounded-lg">
-                  <h2 className="text-xl font-bold mb-3">
-                    3. Scale to milions of devices
-                  </h2>
-                  <span className="text-md">
+                  </div>
+                </CollapsibleItem>
+                <CollapsibleItem title="Scale to milions of devices">
+                  <div className="pb-3 text-md">
                     MQTT can scale to connect with millions of IoT devices.
-                  </span>
-                </div>
-                <div className="lg: max-w-[40%] md: max-w-[80%] bg-slate-900 text-neutral-300 p-10 rounded-lg">
-                  <h2 className="text-xl font-bold mb-3">
-                    4. Support for Unreliable Networks
-                  </h2>
-                  <span className="text-md">
+                  </div>
+                </CollapsibleItem>
+                <CollapsibleItem title="Support for Unreliable Networks">
+                  <div className="pb-3 text-md">
                     Many IoT devices connect over unreliable cellular networks.
-                    MQTT’s support for persistent sessions reduces the time to
+                    MQTT's support for persistent sessions reduces the time to
                     reconnect the client with the broker.
-                  </span>
-                </div>
-              </div>
+                  </div>
+                </CollapsibleItem>
+              </CollapsibleList>
               <Quote>
                 <h4>Resources</h4>
                 <p>
@@ -1168,69 +1160,86 @@ volumes:
                   </span>
                 </p>
               </Quote>
-              <h1>2. React with D3.js</h1>
+              <h1>3. MQTT over websocket</h1>
               <p>
-                Combining D3.js with React has been a tricky job due to the
-                different rendering schemes both libraries provide. After
-                reading{" "}
-                <span>
-                  <a href="https://2019.wattenberger.com/blog/react-and-d3">
-                    Amelia Wattenberger's post
-                  </a>
-                </span>{" "}
-                about the tips to Reactise D3.js, I decided to implement a
-                scattered plot in React (with NextJS13) on my own to face and
-                understand the difficulty through the actual experience.
+                MQTT uses TCP connection for the reliability purpose - assured
+                delivery and packet checking. However, websocket that was
+                created to allow two-way communication in the web environment
+                retricts normal TCP connection for security reasons. [from
+                HiveMQ blog]
               </p>
+              <p>
+                Still, WebSocket behaves in a similar way that TCP operates, and
+                it is possible to run MQTT over Websockets. If you use Mosquitto
+                MQTT broker as I used in my example, you can enable Websocket by
+                changing the configuration file as below. This line allows MQTT
+                over Websockets in the port 9001.
+              </p>
+              <CodeBlock
+                className="mb-5"
+                language="bash"
+                code={`
+# mosquitto.conf
+...
+
+listener 9001
+protocol websockets
+
+...
+`}
+              />
               <Quote>
                 <h4>More Read</h4>
                 <p>
                   <span>
                     1.{" "}
-                    <a href="https://2019.wattenberger.com/blog/react-and-d3">
-                      React and D3 by Amelia Watterberger
+                    <a href="https://www.hivemq.com/article/understanding-the-differences-between-mqtt-and-websockets-for-iot/">
+                      Understanding the Differences between MQTT and WebSockets
+                      for IoT
+                    </a>
+                  </span>
+                </p>
+                <p>
+                  <span>
+                    2.{" "}
+                    <a href="https://mosquitto.org/documentation/">
+                      Eclipse Mosquitto Documentation.
                     </a>
                   </span>
                 </p>
               </Quote>
-              <h1>3. Different number of data, different strategy</h1>
+              <h1>4. React with MQTT</h1>
               <p>
-                While implementing scatter plots, I realised different technical
-                approaches are taken to visualise data with varying numbers of
-                data points. D3 charts utilise SVG, a retained mode graphical
-                model that is easier but performance-limited, to render the data
-                with up to 10k data points.
+                Emqx, an open-source MQTT broker solutions company, provides
+                lots of useful code examples to connect to MQTT server. Based on
+                their React example, I decided to create a useful tool in
+                NextJs13 + Typescript.
               </p>
               <p>
-                However, as the number of data increases upto 10k, it is
-                recommended to render charts using Canvas, which is an immediate
-                mode graphical model.
-              </p>
-              <p>
-                However, as the number of data increases to 10k, it is
-                recommended to render charts using Canvas, an immediate-mode
-                graphical model. When the number of data points increases to 1M,
-                it is better to use WebGL, which provides Javascript API to use
-                GPU-accelerated graphics. Thankfully, I found{" "}
+                Below is the screencapture of the demo page in action. I will go
+                through some of the implementation details for people who is
+                interested. You can find the full code from{" "}
                 <span>
-                  {" "}
-                  <a href="https://blog.scottlogic.com/2020/05/01/rendering-one-million-points-with-d3.html">
-                    this great blog post by Colin Eberhardt
+                  <a href="https://observablehq.com/@d3/quadtree-findincircle?collection=@d3/d3-quadtree">
+                    this project repository
                   </a>
-                </span>{" "}
-                that showcases how to integrate{" "}
-                <span>
-                  <a href="https://d3fc.io/">D3FC library</a>
-                </span>{" "}
-                - a library that enables chart creation with D3 using WebGL.
+                </span>
               </p>
+              <ImageBlock type="img" caption="Image 1. MQTT NextJS Demo">
+                <Image
+                  src="/img/IoT/mqtt-next/demo.gif"
+                  alt="React lifecycle"
+                  width={800}
+                  height={600}
+                />
+              </ImageBlock>
               <Quote>
                 <h4>Resources</h4>
                 <p>
                   <span>
                     1.{" "}
-                    <a href="https://blog.scottlogic.com/2020/05/01/rendering-one-million-points-with-d3.html">
-                      Rendering One Million Datapoints with D3 and WebGL
+                    <a href="https://github.com/emqx/MQTT-Client-Examples">
+                      Various MQTT Client code examples by Emqx
                     </a>
                   </span>
                 </p>
@@ -1243,80 +1252,119 @@ volumes:
         content: (
           <>
             <TextBlock>
-              <h1>4. Implementation</h1>
+              <h1>5. Implementation</h1>
               <p>
-                I created two example charts that manifests above two strategies
-                when the number of data points exceeds 1K. For each chart, I
-                made the chart zoomable and selectable by adopting{" "}
-                <span>
-                  <a href="https://observablehq.com/@d3/quadtree-findincircle?collection=@d3/d3-quadtree">
-                    D3 Quadtree search.
-                  </a>
-                </span>
+                MQTT client connection status is shared as a context as the code
+                below
               </p>
-              <IFrame
-                className="bg-white"
-                src="https://observablehq.com/embed/@d3/animated-quadtree?cells=chart"
-                title="D3 quadtree"
-                showButton={false}
-              />
-              <p>
-                You may visit the full demo page or get the full code from the
-                links below.
-              </p>
-              <Button
-                className="mr-5 bg-yellow-400 shadow-md"
-                onClick={() => {
-                  window.open("https://scatter-plot-pi.vercel.app/", "_parent");
-                }}
-              >
-                Visit Demo Page
-              </Button>
-              <Button
-                className="bg-yellow-400 shadow-md mb-10"
-                onClick={() => {
-                  window.open("https://scatter-plot-pi.vercel.app/", "_parent");
-                }}
-              >
-                Full Github Code
-              </Button>
-              <h2 className="text-2xl py-5 font-bold">
-                4.1. D3 with Canvas (~10k datapoints)
-              </h2>
-              <p>
-                To implement the example, I used the conventional SVG to draw X
-                and Y domains and overlayed two canvases on top. One canvas is
-                to remove the datapoints, and another one to highlight the
-                selected datapoints.{" "}
-              </p>
-              <ImageBlock type="svg" caption="Fig1. D3 with Canvas">
-                <D3Canvas style={{ height: "600px" }} />
-              </ImageBlock>
-              <p>
-                When integrating D3 with React, the easies route you can take is
-                to implement all the code in a single useEffect() hook.
-              </p>
-              <p>
-                In her blog, Amelia Wattenberger suggests more React-friendly
-                way of refactoring D3 code in her{" "}
-                <span>
-                  <a href="https://2019.wattenberger.com/blog/react-and-d3">
-                    blog post.
-                  </a>
-                </span>
-              </p>
-              <p>
-                It is fully upto you to take your preferred strategy depending
-                on the circumstances you're in, but I tried my best to reduce
-                the code in useEffect() by using other hooks(useRef, useMemo,
-                useCallback)
-              </p>
+              <CodeBlock
+                className="mb-5"
+                language="typescript"
+                code={`
+import * as mqtt from "mqtt";
 
-              <IFrame
-                title="canvas"
-                src="https://scatter-plot-pi.vercel.app/canvas"
-                showButton={true}
+const MQTTContext = createContext<any>(null);
+
+export const MQTTProvider = ({ children }: { children: ReactNode }) => {
+  const [client, setClient] = useState<any>(null);
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [payload, setPayload] = useState({});
+  const [connectionStatus, setConnectionStatus] = useState("disconnected");
+
+  const mqttConnect = useCallback((host: string, mqttOption: any) => {
+    // connect to MQTT broker
+    ...
+  }, []);
+
+`}
               />
+              <p>
+                <span className="highlight">src/components/MQTTConnector</span>{" "}
+                includes the MQTT client code needed to communicate with the
+                broker.
+              </p>
+              <CollapsibleList>
+                <CollapsibleItem
+                  title="Connect to MQTT Broker"
+                  width="max-w-full"
+                  open={false}
+                >
+                  {
+                    <>
+                      <p>
+                        To implement the example, I used the conventional SVG to
+                        draw X and Y domains and overlayed two canvases on top.
+                        One canvas is to remove the datapoints, and another one
+                        to highlight the selected datapoints.{" "}
+                      </p>
+                      <ImageBlock type="svg" caption="Fig1. D3 with Canvas">
+                        <D3Canvas style={{ height: "600px" }} />
+                      </ImageBlock>
+                      <CodeBlock
+                        className="mb-5"
+                        language="bash"
+                        code={`
+# mosquitto.conf
+...
+
+listener 9001
+protocol websockets
+
+...
+`}
+                      />
+                    </>
+                  }
+                </CollapsibleItem>
+                <CollapsibleItem
+                  title="Subscribe topics"
+                  width="max-w-full"
+                  open={false}
+                >
+                  {
+                    <>
+                      <p>
+                        To implement the example, I used the conventional SVG to
+                        draw X and Y domains and overlayed two canvases on top.
+                        One canvas is to remove the datapoints, and another one
+                        to highlight the selected datapoints.{" "}
+                      </p>
+                    </>
+                  }
+                </CollapsibleItem>
+                <CollapsibleItem
+                  title="Publish topics"
+                  width="max-w-full"
+                  open={false}
+                >
+                  {
+                    <>
+                      <p>
+                        To implement the example, I used the conventional SVG to
+                        draw X and Y domains and overlayed two canvases on top.
+                        One canvas is to remove the datapoints, and another one
+                        to highlight the selected datapoints.{" "}
+                      </p>
+                    </>
+                  }
+                </CollapsibleItem>
+                <CollapsibleItem
+                  title="Receive messages"
+                  width="max-w-full"
+                  open={false}
+                >
+                  {
+                    <>
+                      <p>
+                        To implement the example, I used the conventional SVG to
+                        draw X and Y domains and overlayed two canvases on top.
+                        One canvas is to remove the datapoints, and another one
+                        to highlight the selected datapoints.{" "}
+                      </p>
+                    </>
+                  }
+                </CollapsibleItem>
+              </CollapsibleList>
               <Quote>
                 <h4>More Read</h4>
                 <p>
@@ -1327,72 +1375,8 @@ volumes:
                     </a>
                   </span>
                 </p>
-                <p>
-                  <span>
-                    2.{" "}
-                    <a href="https://2019.wattenberger.com/blog/react-and-d3">
-                      React and D3 by Amelia Wattenberger
-                    </a>
-                  </span>
-                </p>
               </Quote>
-              <h2 className="text-2xl pt-5 font-bold">
-                4.2. D3FC with D3 (~1M datapoints)
-              </h2>
-              <p>
-                The dataset used in this example is{" "}
-                <span>
-                  <a href="http://creatingdata.us/datasets/hathi-features/">
-                    Hathi Trust Library Dataset
-                  </a>
-                </span>{" "}
-                created by Ben Schmidt, and it is the collection of digital
-                library data, which includes the published year, language and
-                author information.
-              </p>
-              <p>
-                The data is exposed at the endpoint
-                <span className="highlight">/data.tsv </span> in tsv format and
-                streamed by a web worker and you can find the full worker code I
-                wrote from{" "}
-                <span>
-                  <a href="https://github.com/mj-life-is-once/scatter-plot/blob/main/src/app/helper/streamingTSVParser.ts">
-                    here.
-                  </a>
-                </span>
-              </p>
-              <p>
-                The loaded data is saved as a state variable in React (defined
-                as "bigData" state in the code), and is bound with the quadTree
-                object and d3 annotation object(data label to show when hovered)
-                to be rendered in the WebGL canvas.
-              </p>
-              <p>
-                Please note again that the example is a reimplementation of{" "}
-                <span>
-                  <a href="https://colineberhardt.github.io/d3fc-webgl-hathi-explorer/">
-                    Colin Eberhardt's example
-                  </a>
-                </span>{" "}
-                in React + Typescript.
-              </p>
-              <IFrame
-                title="webgl"
-                src="https://scatter-plot-pi.vercel.app/webgl"
-                showButton={true}
-              />
             </TextBlock>
-            <Quote>
-              <h4>Resources</h4>
-              <p>
-                <span>
-                  1.{" "}
-                  <a href="https://d3-annotation.susielu.com/">
-                    D3 annotation library by Susie Lu
-                  </a>
-                </span>
-              </p>
-            </Quote>
           </>
         ),
       },
@@ -1400,43 +1384,7 @@ volumes:
         content: (
           <>
             <TextBlock>
-              <h1>5. Key Takeaway</h1>
-              <p>
-                When integrating D3 with React, I faced several difficulties and
-                I wrote this down so that people reading this blog won't make
-                similar mistakes.
-              </p>
-              <ul>
-                <li>
-                  <h4 className="text-xl font-bold">
-                    1. Make the best use of useRef() hook
-                  </h4>
-                  <p>
-                    It would help if you had to make the best use of useRef()
-                    hook and try to reference the DOM when the first useEffect()
-                    is called.
-                  </p>
-                </li>
-                <li>
-                  <h4 className="text-xl font-bold">
-                    2. Be aware of React's hook lifecycle.
-                  </h4>
-                  <p>
-                    To reduce the repetitive redefinition of the variables or
-                    functions, I used lots of useMemo() or useCallback() hook.
-                    However, it sometimes causes errors caused by the different
-                    order the hooks are called in React's lifecycle.
-                  </p>
-                  <ImageBlock type="img" caption="Fig3. React Lifecycle">
-                    <Image
-                      src="https://raw.githubusercontent.com/Wavez/react-hooks-lifecycle/master/screenshot.jpg"
-                      alt="React lifecycle"
-                      width={800}
-                      height={600}
-                    />
-                  </ImageBlock>
-                </li>
-              </ul>
+              <h1>6. Microcontroller example</h1>
               <Quote>
                 <h4>Resources</h4>
                 <p>
