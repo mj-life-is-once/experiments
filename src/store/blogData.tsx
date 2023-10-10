@@ -1,4 +1,3 @@
-import { orator } from "@/styles/fonts";
 import CodeBlock from "@/components/_ui/CodeBlock";
 import TextBlock from "@/components/_ui/TextBlock";
 import ImageBlock from "@/components/_ui/ImageBlock";
@@ -7,6 +6,7 @@ import MagentaSystem from "@/svg/ml/brain_system.svg";
 import YoutubeEmbed from "@/components/_ui/YoutubeEmbed";
 import VMSystem from "@/svg/ml/vm_system.svg";
 import HuggingLayout from "@/svg/ml/hugging_layout.svg";
+import MQTTCube from "@/svg/iot/mqtt/mqtt-cube.svg";
 import D3Canvas from "@/svg/data_viz/d3_canvas.svg";
 import Image from "next/image";
 import Link from "next/link";
@@ -1092,15 +1092,15 @@ volumes:
             <TextBlock>
               <h1>1. What is MQTT</h1>
               <p>
-                There are number of communication protocols that we all are
-                familiar with when it comes to web development - Websocket, HTTP
-                etc. MQTT is a lightweight pub/sub-based protocol that is most
-                widely used in IoT world.
+                There are a number of communication protocols we all are
+                familiar with regarding web development - Websocket, HTTP, etc.{" "}
+                <span className="highlight">MQTT</span> is a lightweight
+                pub/sub-based protocol that is most widely used in IoT world.
               </p>
               <p>
                 Nowadays, MQTT is adopted as the most widely used protocol by
-                the mainstream IoT services (GCP, AWS.. and many more) to
-                connect millions of devices to the internet.
+                mainstream IoT services (GCP, AWS.. and many more) to connect
+                millions of devices to the internet.
               </p>
               <ImageBlock
                 type="img"
@@ -1113,10 +1113,10 @@ volumes:
                   height={600}
                 />
               </ImageBlock>
-              <h1>2. Why MQTT so popular?</h1>
+              <h1>2. Why is MQTT so popular?</h1>
               <p>
-                Out of various reasons that makes MQTT so attractive to IoT
-                development, I would like to introduce few of them.
+                Out of various reasons that make MQTT so attractive to IoT
+                development, I would like to introduce a few of them.
               </p>
               <CollapsibleList>
                 <CollapsibleItem title="Lightweight and efficient">
@@ -1164,16 +1164,21 @@ volumes:
               <p>
                 MQTT uses TCP connection for the reliability purpose - assured
                 delivery and packet checking. However, websocket that was
-                created to allow two-way communication in the web environment
-                retricts normal TCP connection for security reasons. [from
-                HiveMQ blog]
+                created to allow{" "}
+                <span className="highlight">two-way communication</span> in the
+                web environment retricts normal TCP connection for security
+                reasons. [from HiveMQ blog]
               </p>
               <p>
                 Still, WebSocket behaves in a similar way that TCP operates, and
-                it is possible to run MQTT over Websockets. If you use Mosquitto
-                MQTT broker as I used in my example, you can enable Websocket by
-                changing the configuration file as below. This line allows MQTT
-                over Websockets in the port 9001.
+                it is possible to run{" "}
+                <span className="highlight">MQTT over Websockets</span>.
+              </p>
+              <p>
+                If you use Mosquitto MQTT broker as I used in my example, you
+                can enable Websocket by changing the configuration file as
+                below. The following line allows MQTT over Websockets on the{" "}
+                <span className="highlight">port 9001</span>.
               </p>
               <CodeBlock
                 className="mb-5"
@@ -1210,15 +1215,19 @@ protocol websockets
               </Quote>
               <h1>4. React with MQTT</h1>
               <p>
-                Emqx, an open-source MQTT broker solutions company, provides
-                lots of useful code examples to connect to MQTT server. Based on
-                their React example, I decided to create a useful tool in
-                NextJs13 + Typescript.
+                <a href="https://www.emqx.io/">Emqx</a>, an open-source MQTT
+                broker solutions company, provides lots of useful code examples
+                to connect to MQTT server. Based on their React example, I
+                decided to create an easy-to-use tool in{" "}
+                <span className="highlight">NextJs13 + Typescript</span>.
               </p>
               <p>
-                Below is the screencapture of the demo page in action. I will go
-                through some of the implementation details for people who is
-                interested. You can find the full code from{" "}
+                Below is the snippets of the demo page in action. I will go
+                through some of the implementation details for people who are
+                interested.
+              </p>
+              <p>
+                Please find the full code from{" "}
                 <span>
                   <a href="https://observablehq.com/@d3/quadtree-findincircle?collection=@d3/d3-quadtree">
                     this project repository
@@ -1255,7 +1264,9 @@ protocol websockets
               <h1>5. Implementation</h1>
               <p>
                 MQTT client connection status is shared as a context as the code
-                below
+                below. A number of MQTT functions, as well as the variables
+                containing mqtt connection status, are shared as a context as a
+                React context provider.
               </p>
               <CodeBlock
                 className="mb-5"
@@ -1271,17 +1282,52 @@ export const MQTTProvider = ({ children }: { children: ReactNode }) => {
   const [payload, setPayload] = useState({});
   const [connectionStatus, setConnectionStatus] = useState("disconnected");
 
-  const mqttConnect = useCallback((host: string, mqttOption: any) => {
-    // connect to MQTT broker
-    ...
-  }, []);
+  ...
 
+
+  const value = useMemo(
+    () => ({
+      client,
+      connectionStatus,
+      payload,
+      isSubscribed,
+      mqttConnect,
+      mqttDisconnect,
+      mqttPublish,
+      mqttSubscribe,
+      mqttUnSubscribe,
+      qosOptions,
+    }),
+    [
+      client,
+      connectionStatus,
+      payload,
+      isSubscribed,
+      mqttConnect,
+      mqttDisconnect,
+      mqttPublish,
+      mqttSubscribe,
+      mqttUnSubscribe,
+      qosOptions,
+    ]
+  );
+
+  return <MQTTContext.Provider value={value}>{children}</MQTTContext.Provider>;
+  }, []);
 `}
               />
               <p>
-                <span className="highlight">src/components/MQTTConnector</span>{" "}
-                includes the MQTT client code needed to communicate with the
-                broker.
+                The codes are largely divided into four parts - Connector,
+                subscriber, publisher and receiver.{" "}
+              </p>
+              <p>
+                The detailed usage of each function is implemented under{" "}
+                <span className="highlight">
+                  <a href="https://github.com/mj-life-is-once/NextJS-mqtt/tree/main/next-app/src/components/MQTTConnector">
+                    src/components/MQTTConnector,
+                  </a>
+                </span>{" "}
+                as React components.
               </p>
               <CollapsibleList>
                 <CollapsibleItem
@@ -1292,43 +1338,137 @@ export const MQTTProvider = ({ children }: { children: ReactNode }) => {
                   {
                     <>
                       <p>
-                        To implement the example, I used the conventional SVG to
-                        draw X and Y domains and overlayed two canvases on top.
-                        One canvas is to remove the datapoints, and another one
-                        to highlight the selected datapoints.{" "}
+                        <span className="bg-yellow-300/50">mqttConnect</span>{" "}
+                        connects to the mqtt broker under the provided url and
+                        option. The option contains extra information regarding
+                        broker connection including connection credentials. The
+                        full list of configurable options are available{" "}
+                        <a href="https://github.com/mqttjs/mqtt-packet#connect">
+                          here
+                        </a>
                       </p>
-                      <ImageBlock type="svg" caption="Fig1. D3 with Canvas">
-                        <D3Canvas style={{ height: "600px" }} />
-                      </ImageBlock>
+                      <p>
+                        The connected client is then shared as a status value in
+                        the code, and the connection change is mainly handled in
+                        useEffect hook.
+                      </p>
                       <CodeBlock
                         className="mb-5"
-                        language="bash"
+                        language="typescript"
                         code={`
-# mosquitto.conf
-...
+// src/contexts/MQTTProvider.tsx
+const [client, setClient] = useState<any>(null);
 
-listener 9001
-protocol websockets
+const mqttConnect = useCallback((host: string, mqttOption: any) => {
+  setConnectionStatus("connecting");
+  setClient(mqtt.connect(host, mqttOption));
+}, []);
 
-...
+const mqttDisconnect = useCallback(() => {
+  if (client) {
+    client.end();
+    setConnectionStatus("disconnected");
+  }
+}, [client]);
+
+// detect client status change
+useEffect(() => {
+  if (client) {
+    client.on("connect", () => {
+      setConnectionStatus("connected");
+    });
+    client.on("error", (err: any) => {
+      console.error("Connection error: ", err);
+      client.end();
+    });
+    client.on("reconnect", () => {
+      setConnectionStatus("reconnecting");
+    });
+  }
+}, [client]);
+
 `}
                       />
                     </>
                   }
                 </CollapsibleItem>
                 <CollapsibleItem
-                  title="Subscribe topics"
+                  title="Subscribe to topics"
                   width="max-w-full"
                   open={false}
                 >
                   {
                     <>
                       <p>
-                        To implement the example, I used the conventional SVG to
-                        draw X and Y domains and overlayed two canvases on top.
-                        One canvas is to remove the datapoints, and another one
-                        to highlight the selected datapoints.{" "}
+                        As mentioned earlier in the post, MQTT protocol is
+                        sub/pub based protocol, and the broker only delivers the
+                        message to the client only from the subscribed topics.
                       </p>
+                      <p>
+                        <span className="text-xl font-bold block my-2">
+                          What is QoS
+                        </span>
+                        MQTT Quality of Service (QoS) is an agreement between
+                        the message sender and receiver that defines the level
+                        of delivery guarantee for a specific message.
+                      </p>
+                      <p>MQTT provides three levels of QoS</p>
+                      <ul>
+                        <li>At most once (QoS 0)</li>
+                        <li>At least once (QoS 1)</li>
+                        <li>Exactly once (QoS 2)</li>
+                      </ul>
+                      <p></p>
+                      <CodeBlock
+                        className="mb-5"
+                        language="typescript"
+                        code={`
+// src/contexts/MQTTProvider.tsx
+const mqttSubscribe = useCallback(
+  (subscription: any) => {
+    if (client) {
+      const { topic, qos } = subscription;
+      client.subscribe(topic, { qos }, (error: any) => {
+        if (error) {
+          console.log("Subscribe to topics error", error);
+          return;
+        }
+        setIsSubscribed(true);
+      });
+    }
+  },
+  [client]
+);
+
+const mqttUnSubscribe = useCallback(
+  (subscription: any) => {
+    if (client) {
+      const { topic } = subscription;
+      client.unsubscribe(topic, (error: any) => {
+        if (error) {
+          console.log("Unsubscribe error", error);
+          return;
+        }
+        setIsSubscribed(false);
+      });
+    }
+  },
+  [client]
+);
+
+`}
+                      />
+                      <Quote>
+                        <h4>Resource</h4>
+                        <p>
+                          <span>
+                            1.{" "}
+                            <a href="https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels/">
+                              What is MQTT Quality of Service (HiveHQ)
+                            </a>
+                          </span>
+                        </p>
+                      </Quote>
                     </>
                   }
                 </CollapsibleItem>
@@ -1340,11 +1480,30 @@ protocol websockets
                   {
                     <>
                       <p>
-                        To implement the example, I used the conventional SVG to
-                        draw X and Y domains and overlayed two canvases on top.
-                        One canvas is to remove the datapoints, and another one
-                        to highlight the selected datapoints.{" "}
+                        mqttPublish function publishes the message to the mqtt
+                        broker under the provided topic and qos options.
                       </p>
+                      <CodeBlock
+                        className="mb-5"
+                        language="typescript"
+                        code={`
+// src/contexts/MQTTProvider.tsx
+const mqttPublish = useCallback(
+  (context: any) => {
+    if (client) {
+      const { topic, qos, payload } = context;
+      client.publish(topic, payload, { qos }, (error: any) => {
+        if (error) {
+          console.log("Publish error: ", error);
+        }
+      });
+    }
+  },
+  [client]
+);
+
+`}
+                      />
                     </>
                   }
                 </CollapsibleItem>
@@ -1356,11 +1515,29 @@ protocol websockets
                   {
                     <>
                       <p>
-                        To implement the example, I used the conventional SVG to
-                        draw X and Y domains and overlayed two canvases on top.
-                        One canvas is to remove the datapoints, and another one
-                        to highlight the selected datapoints.{" "}
+                        Messages received from the subscribed topics are
+                        captured as a changing{" "}
+                        <span className="bg-yellow-300/50">payload</span> state
+                        variable in the context.
                       </p>
+                      <CodeBlock
+                        className="mb-5"
+                        language="typescript"
+                        code={`
+// src/contexts/MQTTProvider.tsx
+const [payload, setPayload] = useState({});
+
+useEffect(() => {
+  if (client) {
+    client.on("message", (topic: string, message: any) => {
+      const payload = { topic: topic, message: message.toString() };
+      setPayload(payload);
+    });
+  }
+}, [client]);
+
+`}
+                      />
                     </>
                   }
                 </CollapsibleItem>
@@ -1384,14 +1561,60 @@ protocol websockets
         content: (
           <>
             <TextBlock>
+              <h1>6. Interaction with a ThreeJS object</h1>
+              <p>
+                I included a tiny ThreeJS canvas with an object so that people
+                can play around with mqtt broker messages. In order to make
+                everything function correctly, don't forget to run the mqtt
+                broker that I also packaged as{" "}
+                <a href="https://github.com/mj-life-is-once/NextJS-mqtt/tree/main/mosquitto">
+                  an example container
+                </a>
+                .
+              </p>
+              <p>
+                The digram below illustrates the communication mechanism
+                happening behind the scene. The cube changes its color when it
+                receives the message flowing through the subscribed topic
+                message.
+              </p>
+            </TextBlock>
+            <ImageBlock type="svg" caption="Fig1. ML Model flow">
+              <MQTTCube style={{ height: "400px" }} />
+            </ImageBlock>
+          </>
+        ),
+      },
+      {
+        content: (
+          <>
+            <TextBlock>
               <h1>6. Microcontroller example</h1>
+              <ImageBlock type="img" caption="Image 2. MQTT ESP8266 Demo">
+                <Image
+                  src="/img/IoT/mqtt-next/esp-mqtt.gif"
+                  alt="React lifecycle"
+                  width={800}
+                  height={600}
+                />
+              </ImageBlock>
+              <p>
+                The beauty of the mqtt protocol is in the easy communcation with
+                the micro-controllers (I used{" "}
+                <a href="https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/overview">
+                  ESP8266 Feather board
+                </a>{" "}
+                for this demo). I also included one simple arduino code that
+                connects to the mqtt broker and publishes gyro data under{" "}
+                <span className="highlight">canvas/cube/rotation</span>
+              </p>
               <Quote>
                 <h4>Resources</h4>
                 <p>
                   <span>
                     1.{" "}
-                    <a href="https://github.com/Wavez/react-hooks-lifecycle">
-                      React Hooks Lifecycle Diagram
+                    <a href="https://randomnerdtutorials.com/esp32-mpu-6050-web-server/">
+                      Random Nerd's ESP8266 tutorial.
                     </a>
                   </span>
                 </p>
