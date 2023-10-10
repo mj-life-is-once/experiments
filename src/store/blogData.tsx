@@ -1263,10 +1263,11 @@ protocol websockets
             <TextBlock>
               <h1>5. Implementation</h1>
               <p>
-                MQTT client connection status is shared as a context as the code
-                below. A number of MQTT functions, as well as the variables
-                containing mqtt connection status, are shared as a context as a
-                React context provider.
+                MQTT client connection status is shared as{" "}
+                <span className="highlight">a context</span> as the code below.
+                A number of MQTT functions, as well as the variables containing
+                mqtt connection status, are shared as a context as a React
+                context provider.
               </p>
               <CodeBlock
                 className="mb-5"
@@ -1339,10 +1340,10 @@ export const MQTTProvider = ({ children }: { children: ReactNode }) => {
                     <>
                       <p>
                         <span className="bg-yellow-300/50">mqttConnect</span>{" "}
-                        connects to the mqtt broker under the provided url and
+                        connects to the mqtt broker under the provided URL and
                         option. The option contains extra information regarding
-                        broker connection including connection credentials. The
-                        full list of configurable options are available{" "}
+                        broker connection, including connection credentials. The
+                        complete list of configurable options is available{" "}
                         <a href="https://github.com/mqttjs/mqtt-packet#connect">
                           here
                         </a>
@@ -1401,7 +1402,7 @@ useEffect(() => {
                     <>
                       <p>
                         As mentioned earlier in the post, MQTT protocol is
-                        sub/pub based protocol, and the broker only delivers the
+                        sub/pub-based protocol, and the broker only delivers the
                         message to the client only from the subscribed topics.
                       </p>
                       <p>
@@ -1481,7 +1482,7 @@ const mqttUnSubscribe = useCallback(
                     <>
                       <p>
                         mqttPublish function publishes the message to the mqtt
-                        broker under the provided topic and qos options.
+                        broker under the provided topic and QoS options.
                       </p>
                       <CodeBlock
                         className="mb-5"
@@ -1599,12 +1600,12 @@ useEffect(() => {
                 />
               </ImageBlock>
               <p>
-                The beauty of the mqtt protocol is in the easy communcation with
-                the micro-controllers (I used{" "}
+                The beauty of the mqtt protocol is in the easy communication
+                with the micro-controllers (I used{" "}
                 <a href="https://learn.adafruit.com/adafruit-feather-huzzah-esp8266/overview">
                   ESP8266 Feather board
                 </a>{" "}
-                for this demo). I also included one simple arduino code that
+                for this demo). Then, a tiny arduino code loaded on the board
                 connects to the mqtt broker and publishes gyro data under{" "}
                 <span className="highlight">canvas/cube/rotation</span>
               </p>
