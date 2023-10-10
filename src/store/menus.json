@@ -41,7 +41,7 @@
     {
       "name": "IoT",
       "path": "/IoT",
-      "children": [{ "name": "IoT Infrastructure", "path": "/architecture" }]
+      "children": [{ "name": "NextJS-MQTT", "path": "/nextMqtt" }]
     }
   ]
 }

@@ -1,0 +1,62 @@
+@import "../../app/breakpoints.module.scss";
+
+.footer {
+  padding: 3rem 1rem;
+}
+
+.imageAndLinks {
+  display: flex;
+  justify-content: center;
+}
+
+.personalIcon {
+  padding: 0 5rem;
+}
+
+.contacts {
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3rem;
+  align-items: center;
+}
+
+.credit {
+  margin: 1.5rem auto;
+  padding: 2rem;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius);
+  background-color: #ffbf00d2;
+  border: 1px solid black;
+  max-width: 30rem;
+  color: var(--text_color);
+  font-weight: bold;
+}
+
+@include breakpoint-tablet {
+  .footer {
+    padding: 3rem 2rem;
+  }
+
+  .imageAndLinks {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  .personal-icon {
+    max-width: 80%;
+  }
+
+  .contacts {
+    max-width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+    align-items: center;
+  }
+}

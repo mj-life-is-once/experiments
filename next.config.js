@@ -38,6 +38,12 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "assets.cdn.prod.twilio.com",
+        port: "",
+        pathname: "/images/**",
+      },
     ],
   },
 };
