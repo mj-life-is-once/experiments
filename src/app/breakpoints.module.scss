@@ -1,6 +1,13 @@
+$breakpoint-large: 1280px;
 $breakpoint-tablet: 768px;
 $breakpoint-mobile: 576px;
 $breakpoint-small-mobile: 400px;
+
+@mixin breakpoint-large {
+  @media only screen and (max-width: $breakpoint-large) {
+    @content;
+  }
+}
 
 @mixin breakpoint-tablet {
   @media only screen and (max-width: $breakpoint-tablet) {
