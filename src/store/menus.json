@@ -25,16 +25,17 @@
           "name": "Hugging Face",
           "path": "/huggingface"
         },
-        { "name": "Music Generation", "path": "/musicGeneration" }
+        { "name": "Music Generation", "path": "/musicGeneration" },
+        { "name": "Langchain", "path": "/langchain" }
       ]
     },
     {
-      "name": "Platform Engineering",
-      "path": "/platform",
+      "name": "Fullstack Dev.",
+      "path": "/fullstack",
       "children": [
         {
-          "name": "InquirerJS",
-          "path": "/inquirer"
+          "name": "FARM Stack",
+          "path": "/farm"
         }
       ]
     },
