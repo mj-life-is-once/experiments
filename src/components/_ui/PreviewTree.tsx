@@ -96,6 +96,13 @@ const PreviewTreeNav = ({ data }: { data: TreeNode }) => {
           } else {
             if (d._children) {
               d.children = d._children;
+            } else {
+              if (allowedPosts.includes(d.data.path)) {
+                window.open(
+                  `https://experiments.minjoocho.com/blog${d.data.path}`,
+                  "_parent"
+                );
+              }
             }
             d._children = null;
           }
