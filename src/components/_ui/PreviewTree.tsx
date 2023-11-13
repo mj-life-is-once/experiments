@@ -23,6 +23,7 @@ const allowedPosts = [
   "/musicGeneration",
   "/scatterplots",
   "/nextMqtt",
+  "/langchain",
 ];
 
 const PreviewTreeNav = ({ data }: { data: TreeNode }) => {
