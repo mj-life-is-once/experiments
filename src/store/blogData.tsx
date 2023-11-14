@@ -1961,30 +1961,38 @@ useEffect(() => {
           <>
             <TextBlock>
               <h1>4. Implementation</h1>
+              <p>Now let's jump on to the implementation details.</p>
               <p>
-                This section covers the{" "}
-                <span className="font-bold">implementation details</span> of the
-                project. I skipped the process of creating and activating the
-                Python virtual environment, assuming people reading my blog are
-                already familiar with it.
-              </p>
-              <p>
-                Please note that a lot of codes that I wrote were largely based
-                on the project code from the Udemy course -{" "}
+                Most of the code I introduced here is based on the project code
+                from the Udemy course -{" "}
                 <span>
                   <a href="https://www.udemy.com/course/langchain/">
                     LangChain: Develop LLM powered applications with LangChain
                   </a>
                 </span>{" "}
-                by Eden Marco, and the complete source code is available in this{" "}
+                by Eden Marco.
+              </p>
+              <p>
+                Please visit this{" "}
                 <span>
                   <a href="https://github.com/mj-life-is-once/udemy-langchain/tree/career-chat/career-chatbot">
                     repo
                   </a>
-                </span>
+                </span>{" "}
+                for the complete source code used in this experiment.
               </p>
+              <h2>4.0 Install dependencies</h2>
+              <p>
+                Create a Python virtual environment, install package
+                dependencies with{" "}
+                <span className="font-bold">
+                  pip install -r requirements.txt
+                </span>{" "}
+                command, and activate the environment.
+              </p>
+              <p></p>
 
-              <h2>4.0 Project folder structure</h2>
+              <h2>4.1 Project folder structure</h2>
               <p>The project is created with the following folder structure.</p>
               <ul>
                 <li>
@@ -2027,7 +2035,7 @@ useEffect(() => {
 `}
               />
               <p />
-              <h2>4.1 Load source documents and create vector embeddings</h2>
+              <h2>4.2 Load source documents and create vector embeddings</h2>
               <p>
                 This part of the code uses LangChain Document module and gathers
                 documents, splits documents into small chunks, converts the
@@ -2122,7 +2130,7 @@ def save_vector_store():
 `}
               />
               <p />
-              <h2>4.2 Run LLM with the synthesized query and chat history</h2>
+              <h2>4.3 Run LLM with the synthesized query and chat history</h2>
               <p>
                 As briefly described in the system flow section, the searched
                 result from the vector embeddings is merged into the user query
@@ -2161,7 +2169,7 @@ def run_llm(query: str, chat_history: List[Dict[str, Any]]) -> Any:
 `}
               />
               <p />
-              <h2>4.3 Create MongoDB connection</h2>
+              <h2>4.4 Create MongoDB connection</h2>
               <p>
                 User chat history from a session is stored in MongoDB. This
                 snippet of code initiates the MongoDB connection in the cloud..
@@ -2207,7 +2215,7 @@ class Store:
 `}
               />
               <p />
-              <h2>4.4 Create frontend chat interface</h2>
+              <h2>4.5 Create frontend chat interface</h2>
               <p>
                 Finally, I used the{" "}
                 <span className="font-bold">Streamlit Python library</span> to
