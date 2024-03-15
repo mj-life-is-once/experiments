@@ -893,7 +893,7 @@ volumes:
               <Button
                 className="bg-yellow-400 shadow-md mb-10"
                 onClick={() => {
-                  window.open("https://scatter-plot-pi.vercel.app/", "_parent");
+                  window.open("https://github.com/mj-life-is-once/scatter-plot", "_parent");
                 }}
               >
                 Full Github Code
