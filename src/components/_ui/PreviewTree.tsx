@@ -24,6 +24,7 @@ const allowedPosts = [
   "/scatterplots",
   "/nextMqtt",
   "/langchain",
+  "/plotly",
 ];
 
 const PreviewTreeNav = ({ data }: { data: TreeNode }) => {
