@@ -24,6 +24,7 @@ const allowedPosts = [
   "/scatterplots",
   "/nextMqtt",
   "/langchain",
+  "/plotly",
 ];
 
 const TreeNav = ({ data }: { data: TreeNode }) => {
@@ -90,7 +91,7 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
     node
       .on("click", (event: any, d: any) => {
         if (!event.defaultPrevented) {
-          //console.log(d.children);
+          // console.log(d.children);
           if (d.children) {
             d._children = d.children;
             d.children = null;
@@ -108,6 +109,7 @@ const TreeNav = ({ data }: { data: TreeNode }) => {
                 allowedPosts.includes(d.data.path) &&
                 d.data.hasOwnProperty("external")
               ) {
+                console.log("external", d.data.external);
                 window.open(d.data.external, "_parent");
               }
             }
