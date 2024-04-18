@@ -9,6 +9,11 @@
         {
           "name": "Scattered Plots",
           "path": "/scatterplots"
+        },
+        {
+          "name": "Plotly Dash",
+          "path": "/plotly",
+          "external": "https://medium.com/@minjoolisa.cho/python-project-set-up-for-preliminary-data-exploration-b04998b6cfad"
         }
       ]
     },
@@ -26,23 +31,12 @@
           "path": "/huggingface"
         },
         { "name": "Music Generation", "path": "/musicGeneration" },
-        { "name": "Langchain", "path": "/langchain" }
-      ]
-    },
-    {
-      "name": "Fullstack Dev.",
-      "path": "/fullstack",
-      "children": [
+        { "name": "Langchain", "path": "/langchain" },
         {
           "name": "FARM Stack",
           "path": "/farm"
         }
       ]
-    },
-    {
-      "name": "IoT",
-      "path": "/IoT",
-      "children": [{ "name": "NextJS-MQTT", "path": "/nextMqtt" }]
     }
   ]
 }
