@@ -99,11 +99,15 @@ const PreviewTreeNav = ({ data }: { data: TreeNode }) => {
             if (d._children) {
               d.children = d._children;
             } else {
-              if (allowedPosts.includes(d.data.path)) {
+              if (allowedPosts.includes(d.data.path)&&
+              !d.data.hasOwnProperty("external")) {
                 window.open(
                   `https://experiments.minjoocho.com/blog${d.data.path}`,
                   "_parent"
                 );
+              }
+              if(allowedPosts.includes(d.data.path)&&d.data.hasOwnProperty("external")){
+                window.open(d.data.external, "_parent");
               }
             }
             d._children = null;
